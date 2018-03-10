@@ -1,0 +1,152 @@
+/*
+Copyright © 2018 Dennis Schulmeister-Zimolong
+
+E-Mail: dhbw@windows3.de
+Webseite: https://www.wpvs.de/
+
+Dieser Quellcode ist lizenziert unter einer
+Creative Commons Namensnennung 4.0 International Lizenz.
+*/
+
+/*
+ * ALLGEMEINE LAYOUTOPTIONEN
+ */
+@import url('https://fonts.googleapis.com/css?family=Quicksand');
+
+html, body {
+    padding: 0;
+    margin: 0;
+}
+
+html {
+    font-family: 'Quicksand', sans-serif;
+    font-size: 14pt;
+
+    background-color: rgb(250, 250, 250);
+    /*color: rgb(83, 91, 94);*/
+    color: rgb(255,64,64);
+
+    background-image: url(../img/background1.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    box-sizing: border-box;
+    height: 100%;
+}
+
+@media (max-width: 768px) {
+    html {
+        font-size: 12pt;
+    }
+}
+
+header {
+    background: white;
+    box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    margin-bottom: 1rem;
+    position: sticky;
+}
+
+header, main {
+    padding: 1rem;
+}
+
+/* Titelzeile */
+#titlebar {
+    color: rgb(77, 133, 205);
+    font-size: 260%;
+    margin-bottom: 1rem;
+}
+
+@media (max-width: 768px) {
+    #titlebar {
+        font-size: 160%;
+    }
+}
+
+#titlebar > * {
+    display: inline-block;
+}
+
+#titlebar .appname {
+    color: rgb(107,107,107);
+}
+
+/* Menüzeile */
+#menubar .menuitem {
+    display: inline-block;
+    padding-right: 2em;
+    padding-bottom: 0.5em;
+}
+
+/* Farben für Links */
+a, a:visited {
+    color: rgb(255,64,64);
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+table{
+    background-color: white;
+    margin-top: 20px;
+    border-radius: 15px;
+    opacity:0.9;
+}
+
+td {
+    padding: 15px;
+    text-align: left;
+}
+
+th {
+    background-color: red;
+    color: white;
+    padding: 15px;
+    text-align: left;
+    border-radius: 15px;
+}
+
+#hidden{
+    visibility: hidden;
+}
+
+#details{
+    background-color: white; 
+    border-radius: 15px;
+    opacity: 0.9;
+    margin-top: 20px;
+    padding-top: 20px;
+    margin-right: 20px;
+    padding-right: 20px;
+    margin-left: 20px;
+    padding-left: 20px;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+}
+#formular{
+    background-color: gray; 
+    border-radius: 15px;
+    opacity: 0.9;
+    margin-top: 20px;
+    padding-top: 20px;
+    margin-right: 20px;
+    padding-right: 20px;
+    margin-left: 20px;
+    padding-left: 20px;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+}
+
+
+.loginh1{
+    color: #e1ff00;
+}
+.logintext{
+    color: rgb(255, 255, 255);
+}
+
+#loginbutton{
+    margin-top: 30px;
+}
