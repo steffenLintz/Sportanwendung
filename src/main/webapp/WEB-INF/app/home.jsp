@@ -15,10 +15,28 @@
     </jsp:attribute>
 
     <jsp:attribute name="head">
-        <link rel="stylesheet" href="<c:url value="/css/login.css"/>" />
+        <link rel="stylesheet" href="<c:url value="/css/home.css"/>" />
     </jsp:attribute>
 
     <jsp:attribute name="content">
         Hallo ${pageContext.request.getAttribute(Vorname)}
     </jsp:attribute>
 </template:base>
+
+<c:forEach items="${activities}" var="activity">
+          <div class="activitytile">
+              <img src=${activity.getSporttype.getPicture}/>
+     
+              <div class="footer">
+                  <div class="name">${activity.getSporttype.getName}</div>
+                  <div class="calories">${activity.getCalories}</div>
+              </div>
+          </div>
+</c:forEach>
+          <div class="activitytile">
+              <img src="src/main/pictures/plus.png"/>
+     
+              <div class="footer">
+                  <div class="name">Aktivität hinzufügen</div>
+              </div>
+          </div>
