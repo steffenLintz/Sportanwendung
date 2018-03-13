@@ -64,12 +64,10 @@ public class User implements Serializable {
     private String email;
     
     @Column(name = "FIRSTNAME")
-    @NotNull(message = "Der Vorname darf nicht leer sein.")
     @Size(min=1,message = "Der Vorname darf nicht leer sein.")
     private String firstname;
     
-    @Column(name = "LASTDNAME")
-    @NotNull(message = "Der Nachname darf nicht leer sein.")
+    @Column(name = "LASTNAME")
     @Size(min=1,message = "Der Nachname darf nicht leer sein.")
     private String lastname;
     
