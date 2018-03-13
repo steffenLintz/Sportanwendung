@@ -7,7 +7,6 @@ package dhbw.wwi16b2.webbasiertedatenbankanwendungen.sportanwendung.jpa;
 
 import java.io.*;
 import javax.persistence.*;
-import javax.validation.constraints.*;
 
 /**
  *
@@ -25,6 +24,11 @@ public class Sporttype implements Serializable{
     private String name;
     
     private String picture;
+    @OneToOne(mappedBy = "sporttype")
+    private Activity activity;
+
+    public Sporttype() {
+    }
     
     public Sporttype(String name){
         this.name = name;
