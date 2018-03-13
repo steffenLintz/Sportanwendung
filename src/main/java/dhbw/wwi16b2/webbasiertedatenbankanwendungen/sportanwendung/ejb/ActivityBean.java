@@ -5,6 +5,7 @@
  */
 package dhbw.wwi16b2.webbasiertedatenbankanwendungen.sportanwendung.ejb;
 
+import dhbw.wwi16b2.webbasiertedatenbankanwendungen.sportanwendung.jpa.Sporttype;
 import dhbw.wwi16b2.webbasiertedatenbankanwendungen.sportanwendung.jpa.User;
 import javax.annotation.Resource;
 import javax.ejb.EJBContext;
@@ -25,7 +26,7 @@ public class ActivityBean {
     EJBContext ctx;
     
     public void calculateCalories(Sporttype sporttype, User user, int dura){
-        int met=sporttype.getmet();
+        int met=sporttype.getMet();
         int weight = user.getWeight();
         int duration = dura;
         
