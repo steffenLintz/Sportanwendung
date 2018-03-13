@@ -25,11 +25,11 @@
 
 <c:forEach items="${activities}" var="activity">
           <div class="activitytile">
-              <img src=${activity.getSporttype.getPicture}/>
+              <img src=${activity.sporttype.picture}/>
      
               <div class="footer">
-                  <div class="name">${activity.getSporttype.getName}</div>
-                  <div class="calories">${activity.getCalories}</div>
+                  <div class="name">${activity.sporttype.name}</div>
+                  <div class="calories">${activity.calories}</div>
               </div>
           </div>
 </c:forEach>

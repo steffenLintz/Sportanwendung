@@ -50,10 +50,6 @@ public class ActivityBean {
         return em.createQuery(query).getResultList();
     };
     
-     public List<Activity> findtodaysAcitvities(){
-        
-    };
-    
     public int calculateCalories(Sporttype sporttype, User user, int duration){
        
        return sporttype.getMet()* user.getWeight()* duration;
