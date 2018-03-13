@@ -45,19 +45,19 @@ public class UserBean {
      * @param passwordHash
      * @param email
      * @param firstname
-     * @param secondname
+     * @param lastname
      * @param gender
      * @param height
      * @param weight
      * @param birthdate
      * @throws UserBean.UserAlreadyExistsException
      */
-    public void signup(String username, String passwordHash, String email, String firstname, String secondname, String gender, Date birthdate, int weight, int height) throws UserAlreadyExistsException {
+    public void signup(String username, String passwordHash, String email, String firstname, String lastname, String gender, Date birthdate, int weight, int height) throws UserAlreadyExistsException {
         if (em.find(User.class, username) != null) {
             throw new UserAlreadyExistsException("Der Benutzername $B ist bereits vergeben.".replace("$B", username));
         }
 
-        User user = new User(username, passwordHash,email,firstname,secondname,gender,birthdate,weight,height);
+        User user = new User(username, passwordHash,email,firstname,lastname,gender,birthdate,weight,height);
         user.addToGroup("sportanwendung-user");
         em.persist(user);
     }

@@ -68,10 +68,10 @@ public class User implements Serializable {
     @Size(min=1,message = "Der Vorname darf nicht leer sein.")
     private String firstname;
     
-    @Column(name = "SECONDNAME")
+    @Column(name = "LASTDNAME")
     @NotNull(message = "Der Nachname darf nicht leer sein.")
     @Size(min=1,message = "Der Nachname darf nicht leer sein.")
-    private String secondname;
+    private String lastname;
     
     @Column(name = "GENDER")
     @NotNull(message = "Kein gültiges Geschlecht")
@@ -103,18 +103,19 @@ public class User implements Serializable {
     List<String> groups = new ArrayList<>();
     
     
+    
 
     //<editor-fold defaultstate="collapsed" desc="Konstruktoren">
     public User() {
     }
 
-    public User(String username, String password, String email, String firstname, String secondname, String gender, Date birthdate, int weight, int height) {
+    public User(String username, String password, String email, String firstname, String lastname, String gender, Date birthdate, int weight, int height) {
         this.username = username;
         this.password.password=password;
         this.passwordHash = this.hashPassword(password);
         this.email = email;
         this.firstname = firstname;
-        this.secondname = secondname;
+        this.lastname = lastname;
         this.gender = gender;
         this.birthdate = birthdate;
         this.weight = weight;
@@ -157,12 +158,12 @@ public class User implements Serializable {
         this.firstname = firstname;
     }
 
-    public String getSecondname() {
-        return secondname;
+    public String getLastname() {
+        return lastname;
     }
 
-    public void setSecondname(String secondname) {
-        this.secondname = secondname;
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
     }
 
     public String getGender() {

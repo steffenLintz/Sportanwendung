@@ -19,6 +19,6 @@
     </jsp:attribute>
 
     <jsp:attribute name="content">
-        Hallo Welt!
+        Hallo ${pageContext.request.getAttribute(Vorname)}
     </jsp:attribute>
 </template:base>

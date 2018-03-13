@@ -83,7 +83,7 @@
                     </label>
                     <div class="side-by-side">
                         <input type="text" name="signup_firstname" placeholder="Max" value="${signup_form.values["signup_firstname"][0]}">
-                        <input type="text" name="signup_secondname" placeholder="Mustermann" value="${signup_form.values["signup_secondname"][0]}">
+                        <input type="text" name="signup_lastname" placeholder="Mustermann" value="${signup_form.values["signup_lastname"][0]}">
                     </div>
 
                     <label for="signup_gender">
