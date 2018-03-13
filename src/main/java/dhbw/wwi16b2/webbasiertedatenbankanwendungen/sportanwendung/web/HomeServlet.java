@@ -5,6 +5,7 @@
  */
 package dhbw.wwi16b2.webbasiertedatenbankanwendungen.sportanwendung.web;
 
+import dhbw.wwi16b2.webbasiertedatenbankanwendungen.sportanwendung.ejb.ActivityBean;
 import dhbw.wwi16b2.webbasiertedatenbankanwendungen.sportanwendung.ejb.UserBean;
 import dhbw.wwi16b2.webbasiertedatenbankanwendungen.sportanwendung.jpa.Activity;
 import dhbw.wwi16b2.webbasiertedatenbankanwendungen.sportanwendung.jpa.Sporttype;
@@ -27,23 +28,24 @@ import javax.servlet.http.HttpSession;
  */
 @WebServlet(urlPatterns = {"/app/home/"})
 public class HomeServlet extends HttpServlet {
-    
+
     @EJB
     UserBean userbean;
+    
+    @EJB
+    ActivityBean activitybean;
 
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-       List<Activity> test= new ArrayList<>();
+
+        List<Activity> test = new ArrayList<>();
        
-       test.add(new Activity(new Sporttype("fussball"), new Date(System.currentTimeMillis()), 0));
-       
-        
+
         HttpSession session = request.getSession();
         session.setAttribute("Vorname", this.userbean.getCurrentUser().getFirstname());
-        session.setAttribute("activities",test ); 
-            
+        session.setAttribute("activities",this.activitybean.findAllAcitvities());
+
         // Anfrage an dazugerhörige JSP weiterleiten
         RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/app/home.jsp");
         dispatcher.forward(request, response);

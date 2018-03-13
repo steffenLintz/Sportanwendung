@@ -7,6 +7,7 @@ package dhbw.wwi16b2.webbasiertedatenbankanwendungen.sportanwendung.jpa;
 
 import java.io.Serializable;
 import java.util.Date;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -31,39 +32,44 @@ public class Activity implements Serializable {
     @OneToOne
     private Sporttype sporttype;
     
+    @Column(name = "CALORIES")
     private int calories;
     
     @NotNull(message="Es muss ein Datum angeben werden")
     @Temporal(javax.persistence.TemporalType.DATE)
+    @Column(name = "DATE")
     private Date date;
     
     @NotNull(message="Es muss eine Dauer angegeben werden")
+    @Column(name = "DURATION")
     private int duration;
     
+    @Column(name = "RATING")
     private int rating;
 
     
-   // @ManyToOne
-    //User user = null;
+    @ManyToOne
+    User user;
     
     public Activity() {
     }
 
-    public Activity(Sporttype sporttype, Date date, int duration, int rating) {
+    public Activity(Sporttype sporttype, Date date, int duration, int rating, User user) {
         this.sporttype = sporttype;
         this.date = date;
         this.duration = duration;
         this.rating = rating;
+        this.user = user;
     }
-    
 
-    
-    public Activity(Sporttype sporttype, Date date, int duration) {
+    public Activity(Sporttype sporttype, Date date, int duration, User user) {
         this.sporttype = sporttype;
         this.date = date;
         this.duration = duration;
+        this.user = user;
     }
-
+    
+    
     
     public long getId() {
         return id;

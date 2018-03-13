@@ -8,6 +8,7 @@ package dhbw.wwi16b2.webbasiertedatenbankanwendungen.sportanwendung.ejb;
 import dhbw.wwi16b2.webbasiertedatenbankanwendungen.sportanwendung.jpa.Activity;
 import dhbw.wwi16b2.webbasiertedatenbankanwendungen.sportanwendung.jpa.Sporttype;
 import dhbw.wwi16b2.webbasiertedatenbankanwendungen.sportanwendung.jpa.User;
+import java.util.Date;
 import java.util.List;
 import javax.annotation.Resource;
 import javax.ejb.EJB;
@@ -17,6 +18,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
 /**
@@ -24,7 +26,7 @@ import javax.persistence.criteria.Root;
  * @author z003ne3b
  */
 @Stateless
-public class ActivityBean {
+public class ActivityBean extends EntityBean<Activity, Long>{
     @PersistenceContext
     EntityManager em;
     
@@ -44,11 +46,35 @@ public class ActivityBean {
         // ORDER BY dueDate, dueTime
         query.orderBy(cb.desc(from.get("Date")));
         
-        query.where(cb.equal(from.get("user"), this.userbean.getCurrentUser()));
-      
+        query.where(cb.equal(from.get("User"), this.userbean.getCurrentUser()));
+        
 
         return em.createQuery(query).getResultList();
     };
+
+    public ActivityBean() {
+        super(Activity.class);
+    }
+    
+    public List <Activity> getTodaysActivites(){
+ 
+        CriteriaBuilder cb = this.em.getCriteriaBuilder();
+
+        CriteriaQuery<Activity> query = cb.createQuery(Activity.class);
+        Root<Activity> from = query.from(Activity.class);
+        query.select(from);
+       
+        query.orderBy(cb.desc(from.get("date")));
+        
+        query.where(cb.equal(from.get("user"), this.userbean.getCurrentUser()));
+        
+        Date today = new Date(System.currentTimeMillis());
+ 
+        Predicate date= cb.between(from.get("date"), new Date(today.getYear(),today.getMonth(),today.getDate(),0,0,0), new Date(today.getYear(),today.getMonth(),today.getDate(),23,59,59));;
+        
+        query.where(cb.and(date));
+        return em.createQuery(query).getResultList();
+    }
     
     public int calculateCalories(Sporttype sporttype, User user, int duration){
        
