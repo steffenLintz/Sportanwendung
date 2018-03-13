@@ -100,8 +100,8 @@ public class User implements Serializable {
     @Column(name = "GROUPNAME")
     List<String> groups = new ArrayList<>();
     
-    @OneToMany
-    Activity activity= null;
+   // @OneToMany(mappedBy="activity")
+  //  Activity activity =null;
     
 
     //<editor-fold defaultstate="collapsed" desc="Konstruktoren">

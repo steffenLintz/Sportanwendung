@@ -10,7 +10,10 @@ import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
 import javax.validation.constraints.NotNull;
 
 /**
@@ -24,18 +27,27 @@ public class Activity implements Serializable {
     @GeneratedValue
     private long id =0;
     
-    @NotNull(message="Es muss eine Sportart ausgewählt sein")
+
+    @OneToOne
     private Sporttype sporttype;
     
     private int calories;
     
     @NotNull(message="Es muss ein Datum angeben werden")
+    @Temporal(javax.persistence.TemporalType.DATE)
     private Date date;
     
     @NotNull(message="Es muss eine Dauer angegeben werden")
     private int duration;
     
     private int rating;
+
+    
+   // @ManyToOne
+    //User user = null;
+    
+    public Activity() {
+    }
 
     public Activity(Sporttype sporttype, Date date, int duration, int rating) {
         this.sporttype = sporttype;

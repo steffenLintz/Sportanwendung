@@ -35,7 +35,7 @@ public class HomeServlet extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-       List<Activity> test= new ArrayList<Activity>();
+       List<Activity> test= new ArrayList<>();
        
        test.add(new Activity(new Sporttype("fussball"), new Date(System.currentTimeMillis()), 0));
        

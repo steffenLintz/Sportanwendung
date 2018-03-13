@@ -24,8 +24,9 @@ public class Sporttype implements Serializable{
     private String name;
     
     private String picture;
+            
     @OneToOne(mappedBy = "sporttype")
-    private Activity activity;
+    private Activity activity = null;
 
     public Sporttype() {
     }

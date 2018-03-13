@@ -34,7 +34,7 @@ public class ActivityBean {
     @EJB
     UserBean userbean;
     
-    public List<Activity> findtodaysAcitvities(){
+    public List<Activity> findAllAcitvities(){
         CriteriaBuilder cb = this.em.getCriteriaBuilder();
 
         CriteriaQuery<Activity> query = cb.createQuery(Activity.class);
