@@ -1,7 +1,12 @@
+.tiles {
+    width: 66%;
+}
 .activitytile {
     display: inline-block;
-    width: calc(((100vw - 10rem) / 6) - 1rem);
-    height: calc(((100vw - 10rem) / 6) - 1rem + 3rem);
+    width: 10vw;
+    min-height: 65px; 
+    min-width: 65px;
+    height: 10vw;
     padding: 0.5em;
     margin: 0.25em;
 

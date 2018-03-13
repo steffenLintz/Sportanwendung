@@ -23,13 +23,14 @@
     </jsp:attribute>
 </template:base>
 
+        <div class ="tiles">
 <c:forEach items="${activities}" var="activity">
           <div class="activitytile">
               <img src=${activity.sporttype.picture}/>
      
               <div class="footer">
                   <div class="name">${activity.sporttype.name}</div>
-                  <div class="calories">${activity.calories}</div>
+                  <div class="calories">Kcal ${activity.calories}</div>
               </div>
           </div>
 </c:forEach>
@@ -37,6 +38,7 @@
               <img src="src/main/pictures/plus.png"/>
      
               <div class="footer">
-                  <div class="name">Aktivität hinzufügen</div>
+                  <div class="name">Hinzufügen</div>
               </div>
           </div>
+        </div> 
