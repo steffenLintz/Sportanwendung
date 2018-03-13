@@ -6,7 +6,12 @@
 package dhbw.wwi16b2.webbasiertedatenbankanwendungen.sportanwendung.web;
 
 import dhbw.wwi16b2.webbasiertedatenbankanwendungen.sportanwendung.ejb.UserBean;
+import dhbw.wwi16b2.webbasiertedatenbankanwendungen.sportanwendung.jpa.Activity;
+import dhbw.wwi16b2.webbasiertedatenbankanwendungen.sportanwendung.jpa.Sporttype;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 import javax.ejb.EJB;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -30,8 +35,14 @@ public class HomeServlet extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
+       List<Activity> test= new ArrayList<Activity>();
+       
+       test.add(new Activity(new Sporttype("fussball"), new Date(System.currentTimeMillis()), 0));
+       
+        
         HttpSession session = request.getSession();
         session.setAttribute("Vorname", this.userbean.getCurrentUser().getFirstname());
+        session.setAttribute("activities",test ); 
             
         // Anfrage an dazugerhörige JSP weiterleiten
         RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/app/home.jsp");

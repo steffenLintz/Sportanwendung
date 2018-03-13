@@ -25,7 +25,7 @@ public class Activity implements Serializable {
     private long id =0;
     
     @NotNull(message="Es muss eine Sportart ausgewählt sein")
-    private Sporttype sporttype= null;
+    private Sporttype sporttype;
     
     private int calories;
     
@@ -37,17 +37,22 @@ public class Activity implements Serializable {
     
     private int rating;
 
-    public Activity(Date date, int duration, int rating) {
+    public Activity(Sporttype sporttype, Date date, int duration, int rating) {
+        this.sporttype = sporttype;
         this.date = date;
         this.duration = duration;
         this.rating = rating;
     }
+    
 
-    public Activity(Date date, int duration) {
+    
+    public Activity(Sporttype sporttype, Date date, int duration) {
+        this.sporttype = sporttype;
         this.date = date;
         this.duration = duration;
     }
 
+    
     public long getId() {
         return id;
     }

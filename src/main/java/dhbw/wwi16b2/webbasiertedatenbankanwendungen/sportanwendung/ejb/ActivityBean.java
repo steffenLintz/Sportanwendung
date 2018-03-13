@@ -5,13 +5,19 @@
  */
 package dhbw.wwi16b2.webbasiertedatenbankanwendungen.sportanwendung.ejb;
 
+import dhbw.wwi16b2.webbasiertedatenbankanwendungen.sportanwendung.jpa.Activity;
 import dhbw.wwi16b2.webbasiertedatenbankanwendungen.sportanwendung.jpa.Sporttype;
 import dhbw.wwi16b2.webbasiertedatenbankanwendungen.sportanwendung.jpa.User;
+import java.util.List;
 import javax.annotation.Resource;
+import javax.ejb.EJB;
 import javax.ejb.EJBContext;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 
 /**
  *
@@ -25,12 +31,33 @@ public class ActivityBean {
     @Resource
     EJBContext ctx;
     
-    public void calculateCalories(Sporttype sporttype, User user, int dura){
-        int met=sporttype.getMet();
-        int weight = user.getWeight();
-        int duration = dura;
+    @EJB
+    UserBean userbean;
+    
+    public List<Activity> findtodaysAcitvities(){
+        CriteriaBuilder cb = this.em.getCriteriaBuilder();
+
+        CriteriaQuery<Activity> query = cb.createQuery(Activity.class);
+        Root<Activity> from = query.from(Activity.class);
+        query.select(from);
+
+        // ORDER BY dueDate, dueTime
+        query.orderBy(cb.desc(from.get("Date")));
         
-        int result = met*weight* duration;
+        query.where(cb.equal(from.get("user"), this.userbean.getCurrentUser()));
+      
+
+        return em.createQuery(query).getResultList();
+    };
+    
+     public List<Activity> findtodaysAcitvities(){
+        
+    };
+    
+    public int calculateCalories(Sporttype sporttype, User user, int duration){
+       
+       return sporttype.getMet()* user.getWeight()* duration;
+        
     }
     
     
