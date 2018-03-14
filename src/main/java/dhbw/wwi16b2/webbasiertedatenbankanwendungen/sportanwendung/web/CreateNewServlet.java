@@ -10,9 +10,7 @@ import dhbw.wwi16b2.webbasiertedatenbankanwendungen.sportanwendung.ejb.UserBean;
 import dhbw.wwi16b2.webbasiertedatenbankanwendungen.sportanwendung.jpa.Activity;
 import dhbw.wwi16b2.webbasiertedatenbankanwendungen.sportanwendung.jpa.Sporttype;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 import javax.ejb.EJB;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -26,34 +24,21 @@ import javax.servlet.http.HttpSession;
  *
  * @author z003ne3b
  */
-@WebServlet(urlPatterns = {"/app/home/"})
-public class HomeServlet extends HttpServlet {
+@WebServlet(urlPatterns = {"/app/createNew/"})
+public class CreateNewServlet extends HttpServlet {
 
-    @EJB
-    UserBean userbean;
-    
-    @EJB
-    ActivityBean activitybean;
-
+ 
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
-        //List<Activity> test = new ArrayList<>();
-       
-        Activity testActivity = new Activity(new Sporttype("fussball"), new Date(System.currentTimeMillis()), 12, this.userbean.getCurrentUser());
         
-        //this.activitybean.saveNew(testActivity);
-
         HttpSession session = request.getSession();
-        session.removeAttribute("anlegen");
-        session.setAttribute("Vorname", this.userbean.getCurrentUser().getFirstname());
-  
-        //session.setAttribute("activities",this.activitybean.findAll());
+        session.setAttribute("anlegen", "true");
 
         // Anfrage an dazugerhörige JSP weiterleiten
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/app/home.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/app/createNew.jsp");
         dispatcher.forward(request, response);
     }
 
 }
+

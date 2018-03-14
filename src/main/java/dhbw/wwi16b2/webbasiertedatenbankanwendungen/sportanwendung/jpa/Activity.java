@@ -10,6 +10,7 @@ import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
@@ -25,7 +26,7 @@ import javax.validation.constraints.NotNull;
 @Table(name="ACTIVITY")
 public class Activity implements Serializable {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private long id =0;
     
 
@@ -54,11 +55,14 @@ public class Activity implements Serializable {
     public Activity() {
     }
 
+
+
     public Activity(Sporttype sporttype, Date date, int duration, int rating, User user) {
         this.sporttype = sporttype;
         this.date = date;
         this.duration = duration;
         this.rating = rating;
+        this.calories = sporttype.getMet()* user.getWeight()* duration;
         this.user = user;
     }
 
@@ -67,7 +71,10 @@ public class Activity implements Serializable {
         this.date = date;
         this.duration = duration;
         this.user = user;
+        this.calories = sporttype.getMet()* user.getWeight()* duration;
     }
+
+    
     
     
     

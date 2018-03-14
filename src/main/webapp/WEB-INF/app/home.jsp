@@ -19,26 +19,26 @@
     </jsp:attribute>
 
     <jsp:attribute name="content">
-        Hallo ${pageContext.request.getAttribute(Vorname)}
+        Deine letzten Aktivitäten:
+        <div class ="tiles">
+            <c:forEach items="${activities}" var="activity">
+                <div class="activitytile">
+                    <img src=${activity.sporttype.picture}/>
+
+                    <div class="footer">
+                        <div class="name">${activity.sporttype.name}</div>
+                        <div class="calories">Kcal ${activity.calories}</div>
+                    </div>
+                </div>
+            </c:forEach>
+            <div class="activitytile" >
+                <a href="<c:url value="/app/createNew/"/>">
+                    <img src="src/main/pictures/plus.png"/>
+                    <div class="footer">
+                        <div class="name">Hinzufügen</div>
+                    </div>
+                </a>
+            </div>
+        </div> 
     </jsp:attribute>
 </template:base>
-
-        <div class ="tiles">
-<c:forEach items="${activities}" var="activity">
-          <div class="activitytile">
-              <img src=${activity.sporttype.picture}/>
-     
-              <div class="footer">
-                  <div class="name">${activity.sporttype.name}</div>
-                  <div class="calories">Kcal ${activity.calories}</div>
-              </div>
-          </div>
-</c:forEach>
-          <div class="activitytile">
-              <img src="src/main/pictures/plus.png"/>
-     
-              <div class="footer">
-                  <div class="name">Hinzufügen</div>
-              </div>
-          </div>
-        </div> 

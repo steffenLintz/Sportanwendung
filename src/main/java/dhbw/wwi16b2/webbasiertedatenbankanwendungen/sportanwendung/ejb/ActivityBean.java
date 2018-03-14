@@ -43,10 +43,9 @@ public class ActivityBean extends EntityBean<Activity, Long>{
         Root<Activity> from = query.from(Activity.class);
         query.select(from);
 
-        // ORDER BY dueDate, dueTime
-        query.orderBy(cb.desc(from.get("Date")));
+        query.orderBy(cb.desc(from.get("date")));
         
-        query.where(cb.equal(from.get("User"), this.userbean.getCurrentUser()));
+        query.where(cb.equal(from.get("user"), this.userbean.getCurrentUser()));
         
 
         return em.createQuery(query).getResultList();
