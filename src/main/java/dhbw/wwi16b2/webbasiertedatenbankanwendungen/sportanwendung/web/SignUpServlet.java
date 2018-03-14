@@ -14,10 +14,14 @@ import dhbw.wwi16b2.webbasiertedatenbankanwendungen.sportanwendung.ejb.UserBean;
 import dhbw.wwi16b2.webbasiertedatenbankanwendungen.sportanwendung.ejb.ValidationBean;
 import dhbw.wwi16b2.webbasiertedatenbankanwendungen.sportanwendung.jpa.User;
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.ejb.EJB;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -76,9 +80,13 @@ public class SignUpServlet extends HttpServlet {
         int groeße=-1;
         int gewicht=-1;
         Date birth= null; 
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
          
         if(!birthdate.equals("")){
-            birth = WebUtils.parseDate(birthdate.substring(0, 1)+ "."+ birthdate.substring(2, 3)+"."+birthdate.substring(4));
+            try {
+                birth = dateFormat.parse(birthdate);
+            } catch (ParseException ex) {
+            }
         }
         
         if (!weight.equals("")){
@@ -87,7 +95,7 @@ public class SignUpServlet extends HttpServlet {
         if (!height.equals("")){
             groeße = Integer.parseInt(height);
         }
-        
+        System.out.println(birthdate);
         // Eingaben prüfen
         User user = new User(username, password1,email,firstname,lastname,gender,birth,gewicht,groeße);
         List<String> errors = this.validationBean.validate(user);

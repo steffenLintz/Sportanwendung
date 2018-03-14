@@ -32,7 +32,7 @@
                         <span class="required">*</span>
                     </label>
                     <div>
-                        <select name="activity_sporttype" value="${signup_form.values["activity_sporttype"][0]}">
+                        <select name="activity_sporttype" value="${createNew_form.values["activity_sporttype"][0]}">
                             <option>Fußball</option>
                             <option>Tennis</option>
                             <option>Schwimmen</option>
@@ -47,7 +47,7 @@
                         <span class="required">*</span>
                     </label>
                     <div>
-                        <input type="number" name="activity_duration" placeholder="0" value="${activity_form.values["activity_duration"][0]}">
+                        <input type="number" name="activity_duration" placeholder="0" value="${createNew_form.values["activity_duration"][0]}">
                     </div>
 
 
@@ -56,7 +56,7 @@
                         <span class="required">*</span>
                     </label>
                     <div class="date">
-                        <input type="date" name="activity_date" value="${signup_form.values["activity_date"][0]}">
+                        <input type="date" name="activity_date" value="${createNew_form.values["activity_date"][0]}">
                     </div>
 
                     <label for="activity_date">
@@ -64,7 +64,7 @@
                         <span class="required">*</span>
                     </label>
                     <div class="time">
-                        <input type="time" name="activity_time" value="${signup_form.values["activity_time"][0]}">
+                        <input type="time" name="activity_time" value="${createNew_form.values["activity_time"][0]}">
                     </div>
 
 
@@ -96,9 +96,9 @@
                 </div>
 
                 <%-- Fehlermeldungen --%>
-                <c:if test="${!empty signup_form.errors}">
+                <c:if test="${!empty createNew_form.errors}">
                     <ul class="errors">
-                        <c:forEach items="${signup_form.errors}" var="error">
+                        <c:forEach items="${createNew_form.errors}" var="error">
                             <li>${error}</li>
                             </c:forEach>
                     </ul>

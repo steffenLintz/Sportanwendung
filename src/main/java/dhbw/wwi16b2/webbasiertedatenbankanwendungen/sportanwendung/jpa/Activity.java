@@ -10,12 +10,12 @@ import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
 /**
@@ -26,22 +26,24 @@ import javax.validation.constraints.NotNull;
 @Table(name="ACTIVITY")
 public class Activity implements Serializable {
     @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @GeneratedValue
     private long id =0;
     
 
     @OneToOne
+    @NotNull(message="Es muss eine Sportart angegeben werden")
     private Sporttype sporttype;
     
     @Column(name = "CALORIES")
     private int calories;
     
-    @NotNull(message="Es muss ein Datum angeben werden")
+    @NotNull(message="Es muss ein Datum und eine Uhrzeit angeben werden")
     @Temporal(javax.persistence.TemporalType.DATE)
     @Column(name = "DATE")
     private Date date;
     
     @NotNull(message="Es muss eine Dauer angegeben werden")
+    @Min(value=1, message="Dauer der Aktivität muss mindestens 1 Minute sein")
     @Column(name = "DURATION")
     private int duration;
     
@@ -50,6 +52,7 @@ public class Activity implements Serializable {
 
     
     @ManyToOne
+    @NotNull(message="Es muss eine Benutzer zugeordnet werden")
     User user;
     
     public Activity() {
