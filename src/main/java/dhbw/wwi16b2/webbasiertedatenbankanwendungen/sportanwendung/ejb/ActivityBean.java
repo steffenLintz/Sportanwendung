@@ -26,60 +26,57 @@ import javax.persistence.criteria.Root;
  * @author z003ne3b
  */
 @Stateless
-public class ActivityBean extends EntityBean<Activity, Long>{
-    @PersistenceContext
-    EntityManager em;
-    
-    @Resource
-    EJBContext ctx;
-    
+public class ActivityBean extends EntityBean<Activity, Long> {
+
     @EJB
     UserBean userbean;
-    
-    public List<Activity> findAllAcitvities(){
-        CriteriaBuilder cb = this.em.getCriteriaBuilder();
-
-        CriteriaQuery<Activity> query = cb.createQuery(Activity.class);
-        Root<Activity> from = query.from(Activity.class);
-        query.select(from);
-
-        query.orderBy(cb.desc(from.get("date")));
-        
-        query.where(cb.equal(from.get("user"), this.userbean.getCurrentUser()));
-        
-
-        return em.createQuery(query).getResultList();
-    };
 
     public ActivityBean() {
         super(Activity.class);
     }
-    
-    public List <Activity> getTodaysActivites(){
- 
+
+    public List<Activity> findAllAcitvities() {
         CriteriaBuilder cb = this.em.getCriteriaBuilder();
 
         CriteriaQuery<Activity> query = cb.createQuery(Activity.class);
         Root<Activity> from = query.from(Activity.class);
         query.select(from);
-       
+
         query.orderBy(cb.desc(from.get("date")));
-        
+
         query.where(cb.equal(from.get("user"), this.userbean.getCurrentUser()));
-        
+
+        return em.createQuery(query).getResultList();
+    }
+
+    ;
+
+
+    
+    public List<Activity> getTodaysActivites() {
+
+        CriteriaBuilder cb = this.em.getCriteriaBuilder();
+
+        CriteriaQuery<Activity> query = cb.createQuery(Activity.class);
+        Root<Activity> from = query.from(Activity.class);
+        query.select(from);
+
+        query.orderBy(cb.desc(from.get("date")));
+
+        query.where(cb.equal(from.get("user"), this.userbean.getCurrentUser()));
+
         Date today = new Date(System.currentTimeMillis());
- 
-        Predicate date= cb.between(from.get("date"), new Date(today.getYear(),today.getMonth(),today.getDate(),0,0,0), new Date(today.getYear(),today.getMonth(),today.getDate(),23,59,59));;
-        
+
+        Predicate date = cb.between(from.get("date"), new Date(today.getYear(), today.getMonth(), today.getDate(), 0, 0, 0), new Date(today.getYear(), today.getMonth(), today.getDate(), 23, 59, 59));;
+
         query.where(cb.and(date));
         return em.createQuery(query).getResultList();
     }
-    
-    public int calculateCalories(Sporttype sporttype, User user, int duration){
-       
-       return sporttype.getMet()* user.getWeight()* duration;
-        
+
+    public int calculateCalories(Sporttype sporttype, User user, int duration) {
+
+        return sporttype.getMet() * user.getWeight() * duration;
+
     }
-    
-    
+
 }
