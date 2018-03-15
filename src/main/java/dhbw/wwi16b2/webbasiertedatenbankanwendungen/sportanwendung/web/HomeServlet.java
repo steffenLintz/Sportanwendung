@@ -51,6 +51,24 @@ public class HomeServlet extends HttpServlet {
         session.removeAttribute("anlegen");
      //   session.setAttribute("activities", test);
        
+        List <Activity> activity2= this.activitybean.findAll();
+        int wholeCalories=0;
+        
+        for (Activity a : activity2){
+            wholeCalories= wholeCalories+ a.getCalories();
+        }
+        
+        
+        int ganzepizza = wholeCalories/1000;
+        int pizza =  wholeCalories%1000;
+        int nopizza = 1-pizza;
+        
+        
+        session.setAttribute("ganzepizza",ganzepizza);
+        session.setAttribute("pizza",pizza);
+        session.setAttribute("nopizza",nopizza);
+
+        
         session.setAttribute("activities",this.activitybean.findAll());
 
         // Anfrage an dazugerhörige JSP weiterleiten
