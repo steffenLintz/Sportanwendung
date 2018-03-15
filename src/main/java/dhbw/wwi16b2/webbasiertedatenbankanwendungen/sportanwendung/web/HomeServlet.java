@@ -51,7 +51,7 @@ public class HomeServlet extends HttpServlet {
         session.removeAttribute("anlegen");
      //   session.setAttribute("activities", test);
        
-        List <Activity> activity2= this.activitybean.findAll();
+        List <Activity> activity2= this.activitybean.findAllAcitvities();
         int wholeCalories=0;
         
         for (Activity a : activity2){
@@ -60,8 +60,8 @@ public class HomeServlet extends HttpServlet {
         
         
         int ganzepizza = wholeCalories/1000;
-        int pizza =  wholeCalories%1000;
-        int nopizza = 1-pizza;
+        int pizza =  (wholeCalories%1000)/10;
+        int nopizza = 100-pizza;
         
         
         session.setAttribute("ganzepizza",ganzepizza);
@@ -69,7 +69,7 @@ public class HomeServlet extends HttpServlet {
         session.setAttribute("nopizza",nopizza);
 
         
-        session.setAttribute("activities",this.activitybean.findAll());
+        session.setAttribute("activities",this.activitybean.findAllAcitvities());
 
         // Anfrage an dazugerhörige JSP weiterleiten
         RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/app/home.jsp");

@@ -41,55 +41,80 @@
                     <img src="../../img/plus.png" alt=""/>
                     <div class="footer" style="bottom: 0px; text-align: center;">
 
-                        
+
                     </div>
                 </a>
             </div>
         </div> 
 
-        <div class="chart">
-            
+        <div class="pizzas">
+            <c:if test="${ganzepizza gt 0}">
+                <div class="chart">
+                    <head>
+                        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+                        <script type="text/javascript">
+                         
+
+                            google.charts.load('current', {'packages': ['corechart']});
+                            google.charts.setOnLoadCallback(drawChart);
+
+                            <%--    function drawChart() {
+                                var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+                                chart.draw(data, options);
+                            } --%>
+                        </script>
+                    </head>
+                    <body>
+                        <div id="piechart"></div>
+                    </body>
+                </div>
+            </c:if>
+
+            <div class="chart">
+                <div class="number">${ganzepizza}x</div>
                 <head>
                     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
                     <script type="text/javascript">
-                        window.onresize = function(){ location.reload(); };
-
-                        google.charts.load('current', {'packages': ['corechart']});
-                        google.charts.setOnLoadCallback(drawChart);
-
-                        function drawChart() {
-
-                            var data = google.visualization.arrayToDataTable([
-                                ['Pizza', 'CaloriesNPizza'],
-                                ['NoPizza', 25],
-                                ['Pizza', 75]
-                            ]);
-
-                            var options = {
-                                backgroundColor: 'transparent',
-                                pieSliceBorderColor: 'transparent',
-                                legend: 'none',
-                                pieSliceText: 'none',
-                                pieStartAngle: 135,
-                                tooltip: {trigger: 'none'},
-                                slices: {
-                                    0: {color: '#8896a3'},
-                                    1: {color: 'transparent'},
-                                },
-                                pieStartAngle: 270, 
-                                enableInteractivity: false
+                            window.onresize = function () {
+                                location.reload();
                             };
 
-                            var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+                            google.charts.load('current', {'packages': ['corechart']});
+                            google.charts.setOnLoadCallback(drawChart);
 
-                            chart.draw(data, options);
-                        }
+                            function drawChart() {
+
+                                var data = google.visualization.arrayToDataTable([
+                                    ['Pizza', 'CaloriesNPizza'],
+                                    ['NoPizza', ${nopizza}],
+                                    ['Pizza', ${pizza}]
+                                ]);
+
+                                var options = {
+                                    backgroundColor: 'transparent',
+                                    pieSliceBorderColor: 'transparent',
+                                    legend: 'none',
+                                    pieSliceText: 'none',
+                                    pieStartAngle: 20,
+                                    tooltip: {trigger: 'none'},
+                                    slices: {
+                                        0: {color: '#8896a3'},
+                                        1: {color: 'transparent'},
+                                    },
+                                    pieStartAngle: 270,
+                                    enableInteractivity: false
+                                };
+
+                                var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+
+                                chart.draw(data, options);
+                            }
                     </script>
                 </head>
                 <body>
                     <div id="piechart"></div>
                 </body>
-            
+            </div>
         </div>
     </jsp:attribute>
 </template:base>
