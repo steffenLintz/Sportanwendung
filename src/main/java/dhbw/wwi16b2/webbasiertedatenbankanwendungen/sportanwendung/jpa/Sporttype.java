@@ -17,7 +17,7 @@ import javax.persistence.*;
 public class Sporttype implements Serializable {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.TABLE)
     private long id = 0;
 
     private int met;

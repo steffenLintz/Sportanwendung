@@ -27,7 +27,7 @@ import javax.validation.constraints.NotNull;
 @Table(name="ACTIVITY")
 public class Activity implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO) 
+    @GeneratedValue(strategy = GenerationType.TABLE) 
     private long id =0;
     
 
