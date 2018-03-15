@@ -41,7 +41,7 @@
                     <img src="../../img/plus.png" alt=""/>
                     <div class="footer" style="bottom: 0px; text-align: center;">
 
-                        <div class="name">Hinzufügen</div>
+                        
                     </div>
                 </a>
             </div>
