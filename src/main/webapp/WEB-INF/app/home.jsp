@@ -23,7 +23,8 @@
         <div class ="tiles">
             <c:forEach items="${activities}" var="activity">
                 <div class="activitytile">
-                    <img src=${activity.sporttype.picture}/>
+                    <a href="<c:url value="/app/view/${activity.id}"/>">
+                    <img src=${activity.sporttype.picture}>
 
                     <div class="footer">
                         <div class="name">${activity.sporttype.name}</div>
@@ -31,10 +32,11 @@
                     </div>
                 </div>
             </c:forEach>
-            <div class="activitytile" >
+            <div class="activitytile" style="background: #ffffff5c">
                 <a href="<c:url value="/app/createNew/"/>">
-                    <img src="src/main/pictures/plus.png"/>
-                    <div class="footer">
+                    <img src="../../img/plus.png" alt=""/>
+                    <div class="footer" style="bottom: 0px; text-align: center;">
+                        
                         <div class="name">Hinzufügen</div>
                     </div>
                 </a>

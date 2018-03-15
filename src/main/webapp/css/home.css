@@ -2,7 +2,7 @@
     width: 55%;
 }
 .activitytile {
-    display: inline-block;
+    display: -webkit-inline-box;
     width: 10vw;
     min-height: 65px; 
     min-width: 65px;
@@ -28,7 +28,7 @@
 .activitytile * {
     text-overflow: ellipsis;
     white-space: nowrap;
-	overflow: hidden;
+    overflow: hidden;
 }
 
 .activitytile img {
@@ -43,7 +43,9 @@
 
 .activitytile .name {
     font-weight: bold;
+    padding-left: 10px;
 }
 .activitytile .calories {
     color: rgb(120,120,120);
+    padding-left: 10px;
 }

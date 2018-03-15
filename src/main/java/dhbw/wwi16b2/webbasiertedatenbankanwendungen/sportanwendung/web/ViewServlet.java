@@ -6,13 +6,10 @@
 package dhbw.wwi16b2.webbasiertedatenbankanwendungen.sportanwendung.web;
 
 import dhbw.wwi16b2.webbasiertedatenbankanwendungen.sportanwendung.ejb.ActivityBean;
-import dhbw.wwi16b2.webbasiertedatenbankanwendungen.sportanwendung.ejb.UserBean;
 import dhbw.wwi16b2.webbasiertedatenbankanwendungen.sportanwendung.jpa.Activity;
-import dhbw.wwi16b2.webbasiertedatenbankanwendungen.sportanwendung.jpa.Sporttype;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.ejb.EJB;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -26,36 +23,27 @@ import javax.servlet.http.HttpSession;
  *
  * @author z003ne3b
  */
-@WebServlet(urlPatterns = {"/app/home/"})
-public class HomeServlet extends HttpServlet {
+@WebServlet(urlPatterns = {"/app/view/*"})
+public class ViewServlet extends HttpServlet {
 
     @EJB
-    UserBean userbean;
-    
-    @EJB
-    ActivityBean activitybean;
+    ActivityBean activityBean;
 
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        List<Activity> test = new ArrayList<>();
-       
-        Activity testActivity = new Activity(new Sporttype("Fußball"), new Date(System.currentTimeMillis()), 12, this.userbean.getCurrentUser());
-       
-        test.add(testActivity);
+        Activity activity = this.activityBean.findById(Long.parseLong(request.getRequestURI().substring(25)));
 
-        //this.activitybean.saveNew(testActivity);
-
-        HttpSession session = request.getSession();
-        session.removeAttribute("anlegen");
-        session.setAttribute("activities", test);
-       
-        //session.setAttribute("activities",this.activitybean.findAll());
-
+        //  Activity current = this.activityBean.findById();
         // Anfrage an dazugerhörige JSP weiterleiten
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/app/home.jsp");
+        HttpSession session = request.getSession();
+        session.setAttribute("Activity", activity);
+        session.setAttribute("anlegen", "true");
+
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/app/view.jsp");
         dispatcher.forward(request, response);
+
     }
 
 }
