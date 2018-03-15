@@ -39,11 +39,7 @@ public class HomeServlet extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        List<Activity> test = new ArrayList<>();
        
-        Activity testActivity = new Activity(new Sporttype("Fußball"), new Date(System.currentTimeMillis()), 12, this.userbean.getCurrentUser());
-       
-        test.add(testActivity);
 
         //this.activitybean.saveNew(testActivity);
 

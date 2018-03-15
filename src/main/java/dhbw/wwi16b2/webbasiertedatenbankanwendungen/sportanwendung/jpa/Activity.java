@@ -66,7 +66,7 @@ public class Activity implements Serializable {
         this.date = date;
         this.duration = duration;
         this.rating = rating;
-        this.calories = sporttype.getMet()* user.getWeight()* duration;
+        this.calories = (sporttype.getMet()* user.getWeight()* duration)/60;
         this.user = user;
     }
 
@@ -75,7 +75,7 @@ public class Activity implements Serializable {
         this.date = date;
         this.duration = duration;
         this.user = user;
-        this.calories = sporttype.getMet()* user.getWeight()* duration;
+        this.calories = (sporttype.getMet()* user.getWeight()* duration)/60;
     }
 
     
