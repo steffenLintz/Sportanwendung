@@ -9,17 +9,20 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 
+
+
 <template:base>
     <jsp:attribute name="title">
         Details
     </jsp:attribute>
-
     <jsp:attribute name="head">
         <link rel="stylesheet" href="<c:url value="/css/home.css"/>" />
     </jsp:attribute>
 
     <jsp:attribute name="content">
         ToDo, folgt bald...
-       ${activity.sporttype.name}
+        
+        <c:out value="${activity.sporttype.name}"/>
+
     </jsp:attribute>
 </template:base>

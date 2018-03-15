@@ -9,7 +9,18 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 
+<script>
+    function getSelectedIndex(value)
+    {
+        if (value === "Kraftsport")
+            document.getElementById('distance').value = "Wiederholungen";
+        else
+            document.getElementById('distance').value = "Distanz";
+    }
+</script>
+
 <template:base>
+
     <jsp:attribute name="title">
         Neue Aktivität anlegen
     </jsp:attribute>
@@ -32,7 +43,7 @@
                         <span class="required">*</span>
                     </label>
                     <div>
-                        <select name="activity_sporttype" value="${createNew_form.values["activity_sporttype"][0]}">
+                        <select name="activity_sporttype" onselect="getSelectedIndex(value)" value="${createNew_form.values["activity_sporttype"][0]}">
                             <option>Fußball</option>
                             <option>Tennis</option>
                             <option>Schwimmen</option>
@@ -48,6 +59,13 @@
                     </label>
                     <div>
                         <input type="number" name="activity_duration" placeholder="0" value="${createNew_form.values["activity_duration"][0]}">
+                    </div>
+                    <label id="distance" for="activity_distance">
+
+                        <span class="required">*</span>
+                    </label>
+                    <div>
+                        <input type="number" name="activity_distance" placeholder="0" value="${createNew_form.values["activity_distance"][0]}">
                     </div>
 
 
