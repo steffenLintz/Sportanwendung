@@ -49,9 +49,9 @@ public class HomeServlet extends HttpServlet {
 
         HttpSession session = request.getSession();
         session.removeAttribute("anlegen");
-        session.setAttribute("activities", test);
+     //   session.setAttribute("activities", test);
        
-        //session.setAttribute("activities",this.activitybean.findAll());
+        session.setAttribute("activities",this.activitybean.findAll());
 
         // Anfrage an dazugerhörige JSP weiterleiten
         RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/app/home.jsp");

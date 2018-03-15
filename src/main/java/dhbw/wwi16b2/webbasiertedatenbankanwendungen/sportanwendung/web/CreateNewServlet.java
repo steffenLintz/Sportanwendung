@@ -111,7 +111,7 @@ public class CreateNewServlet extends HttpServlet {
             activity = new Activity(new Sporttype(sporttype), date2, duration2, rating2, this.userbean.getCurrentUser());
             errors = this.validationBean.validate(activity);
         }
-        // Neuen Benutzer anlegen
+       
         if (errors.isEmpty()) {
             this.activitybean.saveNew(activity);
             response.sendRedirect(WebUtils.appUrl(request, "/app/home/"));

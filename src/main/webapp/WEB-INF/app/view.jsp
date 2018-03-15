@@ -20,5 +20,6 @@
 
     <jsp:attribute name="content">
         ToDo, folgt bald...
+       ${activity.sporttype.name}
     </jsp:attribute>
 </template:base>

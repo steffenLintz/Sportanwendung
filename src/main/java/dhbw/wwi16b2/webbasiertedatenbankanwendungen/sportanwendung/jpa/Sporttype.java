@@ -38,27 +38,27 @@ public class Sporttype implements Serializable {
         switch (this.name) {
             case "Fußball":
                 this.met = 7;
-                this.picture = "../../img/fussball.png";
+                this.picture = "../../img/fußball.png";
                 break;
             case "Tennis":
                 this.met = 8;
-                this.picture = "src/main/pictures/tennis.png";
+                this.picture = "../../img/tennis.png";
                 break;
             case "Schwimmen":
                 this.met = 6;
-                this.picture = "src/main/pictures/schwimmen.png";
+                this.picture = "../../img/schwimmen.png";
                 break;
             case "Fahrrad":
                 this.met = 10;
-                this.picture = "src/main/pictures/fahrrad.png";
+                this.picture ="../../img/fahrrad.png";
                 break;
             case "Laufen":
                 this.met = 12;
-                this.picture = "src/main/pictures/laufen.png";
+                this.picture = "../../img/laufen.png";
                 break;
             case "Kraftsport":
                 this.met = 8;
-                this.picture = "src/main/pictures/kraftsport.png";
+                this.picture = "../../img/kraftsport.png";
                 break;
         }
     }
