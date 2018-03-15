@@ -45,6 +45,7 @@ public class HomeServlet extends HttpServlet {
 
         HttpSession session = request.getSession();
         session.removeAttribute("anlegen");
+        session.removeAttribute("activities");
      //   session.setAttribute("activities", test);
        
         List <Activity> activity2= this.activitybean.findAllAcitvities();

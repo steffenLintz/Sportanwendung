@@ -38,12 +38,26 @@ public class ViewServlet extends HttpServlet {
         //  Activity current = this.activityBean.findById();
         // Anfrage an dazugerhörige JSP weiterleiten
         HttpSession session = request.getSession();
-        session.setAttribute("Activity", activity);
+        session.setAttribute("activity", activity);
         session.setAttribute("anlegen", "true");
 
         RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/app/view.jsp");
         dispatcher.forward(request, response);
 
+    }
+
+    @Override
+    public void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        
+        Activity activity = this.activityBean.findById(Long.parseLong(request.getRequestURI().substring(25)));
+        HttpSession session = request.getSession();
+        session.removeAttribute("activity");
+        this.activityBean.delete(activity);
+
+        
+        response.sendRedirect("/sportanwendung/app/home/");
+       
     }
 
 }

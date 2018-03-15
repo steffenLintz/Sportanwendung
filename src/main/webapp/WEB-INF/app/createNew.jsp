@@ -9,16 +9,6 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 
-<script>
-    function getSelectedIndex(value)
-    {
-        if (value === "Kraftsport")
-            document.getElementById('distance').value = "Wiederholungen";
-        else
-            document.getElementById('distance').value = "Distanz";
-    }
-</script>
-
 <template:base>
 
     <jsp:attribute name="title">
@@ -43,14 +33,26 @@
                         <span class="required">*</span>
                     </label>
                     <div>
-                        <select name="activity_sporttype" onselect="getSelectedIndex(value)" value="${createNew_form.values["activity_sporttype"][0]}">
-                            <option>Fußball</option>
-                            <option>Tennis</option>
-                            <option>Schwimmen</option>
-                            <option>Fahrrad</option>
-                            <option>Laufen</option>
-                            <option>Kraftsport</option>
+                        <select id="Typeselector" name="activity_sporttype" value="${createNew_form.values["activity_sporttype"][0]}">
+                            <option value="Fußball">Fußball</option>
+                            <option value="Tennis">Tennis</option>
+                            <option value="Schwimmen">Schwimmen</option>
+                            <option value="Fahrrad">Fahrrad</option>
+                            <option value="Laufen">Laufen</option>
+                            <option value="Kraftsport">Kraftsport</option>
                         </select>
+
+                        <script type="text/javascript">
+                            var selector = document.getElementById('Typeselector');
+                            selector.onchange = function () {
+                                var show = document.getElementById('distance');
+                                if(this.value === "Kraftsport"){
+                                show.innerHTML = "Anzahl Wiederholungen";
+                            }else{
+                                show.innerHTML = "Zurückgelegte Distanz in km";
+                            }
+                            }
+                        </script>
                     </div>
 
                     <label for="activity_duration">
@@ -58,14 +60,14 @@
                         <span class="required">*</span>
                     </label>
                     <div>
-                        <input type="number" name="activity_duration" placeholder="0" value="${createNew_form.values["activity_duration"][0]}">
+                        <input id="standardinputs" type="number" name="activity_duration" placeholder="0" value="${createNew_form.values["activity_duration"][0]}">
                     </div>
                     <label id="distance" for="activity_distance">
-
+                           Zurückgelegte Distanz in km
                         <span class="required">*</span>
                     </label>
                     <div>
-                        <input type="number" name="activity_distance" placeholder="0" value="${createNew_form.values["activity_distance"][0]}">
+                        <input id="standardinputs" type="number" name="activity_distance" placeholder="0" value="${createNew_form.values["activity_distance"][0]}">
                     </div>
 
 
@@ -74,7 +76,7 @@
                         <span class="required">*</span>
                     </label>
                     <div class="date">
-                        <input type="date" name="activity_date" value="${createNew_form.values["activity_date"][0]}">
+                        <input type="date" id="smallinputs" name="activity_date" value="${createNew_form.values["activity_date"][0]}">
                     </div>
 
                     <label for="activity_date">
@@ -82,7 +84,7 @@
                         <span class="required">*</span>
                     </label>
                     <div class="time">
-                        <input type="time" name="activity_time" value="${createNew_form.values["activity_time"][0]}">
+                        <input type="time" id="smallinputs" name="activity_time" value="${createNew_form.values["activity_time"][0]}">
                     </div>
 
 

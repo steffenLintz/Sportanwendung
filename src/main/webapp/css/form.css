@@ -205,3 +205,25 @@ form .stars span {
   -o-transition: -o-width 0.5s;
   transition: width 0.5s;
 }
+#Typeselector{
+    width:40%;
+}
+
+#standardinputs{
+    width:40%;
+}
+
+#smallinputs{
+     width:25%;
+}
+
+#container{
+    width: 55%;
+}
+#sportpicture{
+    float: right;
+    margin-top: 0px;
+    margin: 0.2em;
+    width: 50%;
+    
+}

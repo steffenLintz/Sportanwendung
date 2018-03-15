@@ -20,9 +20,30 @@
     </jsp:attribute>
 
     <jsp:attribute name="content">
-        ToDo, folgt bald...
-        
-        <c:out value="${activity.sporttype.name}"/>
 
-    </jsp:attribute>
-</template:base>
+        <div id="container">
+
+            <h1>Details</h1>
+
+            <h3>Verbrannte Kalorien</h2>
+                <img id="sportpicture" src=${activity.sporttype.picture}>
+                <div>${activity.calories} kcal</div>
+                <h3>Datum</h2>
+                    <div>
+                        <input type="date" disabled="true" value=${activity.date}>
+                    </div>
+                    <h3>Dauer</h2>
+                        <div>${activity.duration} Minuten</div>
+                        <h3>Sportart</h2>
+                            <div>${activity.sporttype.name}</div>
+
+
+                            </div>
+                            <form method="post">
+                                 <input type="hidden" name="csrf_token" value="${csrf_token}">
+                                 
+                                <button id="delete" type="submit">Diese Aktivität löschen</button>
+                            </form>
+
+                        </jsp:attribute>
+                    </template:base>
