@@ -30,7 +30,7 @@
                 <div>${activity.calories} kcal</div>
                 <h3>Datum</h2>
                     <div>
-                        <input type="date" disabled="true" value=${activity.date}>
+                        <input type="date" disabled="true" value=${adate}>
                     </div>
                     <h3>Dauer</h2>
                         <div>${activity.duration} Minuten</div>

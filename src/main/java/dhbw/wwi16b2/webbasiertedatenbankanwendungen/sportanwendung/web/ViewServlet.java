@@ -8,6 +8,8 @@ package dhbw.wwi16b2.webbasiertedatenbankanwendungen.sportanwendung.web;
 import dhbw.wwi16b2.webbasiertedatenbankanwendungen.sportanwendung.ejb.ActivityBean;
 import dhbw.wwi16b2.webbasiertedatenbankanwendungen.sportanwendung.jpa.Activity;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.ejb.EJB;
@@ -34,11 +36,17 @@ public class ViewServlet extends HttpServlet {
             throws ServletException, IOException {
 
         Activity activity = this.activityBean.findById(Long.parseLong(request.getRequestURI().substring(25)));
+        
+          Date d =activity.getDate();
+          SimpleDateFormat format= new SimpleDateFormat("yyyy-MM-dd");
+          
+          String adate = format.format(d);
 
         //  Activity current = this.activityBean.findById();
         // Anfrage an dazugerhörige JSP weiterleiten
         HttpSession session = request.getSession();
         session.setAttribute("activity", activity);
+        session.setAttribute("adate", adate);
         session.setAttribute("anlegen", "true");
 
         RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/app/view.jsp");
@@ -54,6 +62,7 @@ public class ViewServlet extends HttpServlet {
         HttpSession session = request.getSession();
         session.removeAttribute("activity");
         this.activityBean.delete(activity);
+      
 
         
         response.sendRedirect("/sportanwendung/app/home/");

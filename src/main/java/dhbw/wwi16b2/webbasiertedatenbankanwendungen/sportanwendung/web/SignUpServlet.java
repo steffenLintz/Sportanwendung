@@ -95,7 +95,7 @@ public class SignUpServlet extends HttpServlet {
         if (!height.equals("")){
             groeße = Integer.parseInt(height);
         }
-        System.out.println(birthdate);
+
         // Eingaben prüfen
         User user = new User(username, password1,email,firstname,lastname,gender,birth,gewicht,groeße);
         List<String> errors = this.validationBean.validate(user);

@@ -64,7 +64,10 @@ public class CreateNewServlet extends HttpServlet {
         String time = request.getParameter("activity_time");
         //   String rating = request.getParameter("activity_rating");
 
+        System.out.println(date);
+        System.out.println(time);
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat dateFormat2 = new SimpleDateFormat("yyyy-MM-dd hh:mm");
         //Test
         String rating = "";
 
@@ -98,7 +101,7 @@ public class CreateNewServlet extends HttpServlet {
 
         if (!date.equals("") && !time.equals("")) {
             try {
-                date2 = new Date(year, month, day, hours, minutes, seconds);
+                date2= dateFormat2.parse(date+" "+time);
             } catch (Exception e) {
             }
         }

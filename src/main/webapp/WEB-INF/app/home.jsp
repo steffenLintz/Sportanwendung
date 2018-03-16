@@ -99,10 +99,9 @@
                                     tooltip: {trigger: 'none'},
                                     slices: {
                                         0: {color: '#8896a3'},
-                                        1: {color: 'transparent'},
-                                    },
-                                    pieStartAngle: 270,
-                                    enableInteractivity: false
+                                        1: {color: 'transparent'}
+                                    }
+                                   enableInteractivity: false;
                                 };
 
                                 var chart = new google.visualization.PieChart(document.getElementById('piechart'));
