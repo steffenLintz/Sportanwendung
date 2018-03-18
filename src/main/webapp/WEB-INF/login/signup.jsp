@@ -124,7 +124,7 @@
                                type="range" min="0" value=""${signup_form.values["signup_height"][0]}" max="250" 
                                orient="vertical" placeholder="167">
                         <label for="signup_height" id="n2">250cm</label>
-                        <output name="x" for="signup_height"></output>
+                        <output name="x" for="signup_height">167</output>
 
                     </div>
 

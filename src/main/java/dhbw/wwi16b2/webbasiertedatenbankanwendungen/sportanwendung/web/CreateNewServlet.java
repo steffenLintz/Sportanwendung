@@ -46,12 +46,14 @@ public class CreateNewServlet extends HttpServlet {
 
         HttpSession session = request.getSession();
         session.setAttribute("anlegen", "true");
+        session.removeAttribute("user_edit");
 
         // Anfrage an dazugerhörige JSP weiterleiten
         RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/app/createNew.jsp");
         dispatcher.forward(request, response);
     }
 
+    @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 

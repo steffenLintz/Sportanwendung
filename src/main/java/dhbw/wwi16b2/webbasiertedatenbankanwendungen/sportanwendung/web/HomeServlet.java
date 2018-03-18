@@ -41,12 +41,14 @@ public class HomeServlet extends HttpServlet {
 
        
 
-        //this.activitybean.saveNew(testActivity);
+      
 
         HttpSession session = request.getSession();
         session.removeAttribute("anlegen");
         session.removeAttribute("activities");
-     //   session.setAttribute("activities", test);
+        session.setAttribute("user_edit", "true");
+        
+
        
         List <Activity> activity2= this.activitybean.findAllAcitvities();
         int wholeCalories=0;

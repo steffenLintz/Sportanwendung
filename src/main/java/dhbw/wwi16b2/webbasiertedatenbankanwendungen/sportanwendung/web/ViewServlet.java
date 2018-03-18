@@ -48,6 +48,7 @@ public class ViewServlet extends HttpServlet {
         session.setAttribute("activity", activity);
         session.setAttribute("adate", adate);
         session.setAttribute("anlegen", "true");
+        session.removeAttribute("user_edit");
 
         RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/app/view.jsp");
         dispatcher.forward(request, response);

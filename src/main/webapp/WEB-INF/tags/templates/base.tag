@@ -41,7 +41,7 @@
                 <div class="content">
                     ${title}
                 </div>
-               
+
             </div>
 
             <%-- Menü --%>
@@ -53,10 +53,15 @@
                         <a href="<c:url value="/logout/"/>" class="icon-logout">Logout ${pageContext.request.userPrincipal}</a>
                     </div>
                 </c:if>
+                
                 <c:if test="${anlegen}">
-                     <a href="<c:url value="/app/home/"/>" class="icon-logout">Zurück </a>
-               </c:if> 
-        
+                    <a href="<c:url value="/app/home/"/>" class="icon-logout">Zurück </a>
+                </c:if> 
+                    
+               <c:if test="${user_edit}">
+                    <a href="<c:url value="/app/user-edit/"/>" class="icon-logout">Benutzerdaten ändern </a>
+                </c:if>
+
             </div>
         </header>
 
