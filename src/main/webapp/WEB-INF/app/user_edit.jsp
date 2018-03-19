@@ -41,21 +41,21 @@
                         altes Passwort:
                     </label>
                     <div class="side-by-side">
-                        <input type="password" name="user_edit_password1" placeholder="Passwort eingeben" value="${user_edit_form.values["user_edit_oldpassword"][0]}">
+                        <input type="password" name="user_edit_oldpassword" placeholder="altes Passwort eingeben" value="${user_edit_form.values["user_edit_oldpassword"][0]}">
                     </div>
 
                     <label for="user_edit_password1">
                         Passwort:
                     </label>
                     <div class="side-by-side">
-                        <input type="password" name="user_edit_password1" placeholder="Passwort eingeben" value="${user_edit_form.values["user_edit_password1"][0]}">
+                        <input type="password" name="user_edit_password1" placeholder="neues Passwort eingeben" value="${user_edit_form.values["user_edit_password1"][0]}">
                     </div>
 
                     <label for="user_edit_password2">
                         Passwort (wdh.):
                     </label>
                     <div class="side-by-side">
-                        <input type="password" name="user_edit_password2" placeholder="Passwort wdh." value="${user_edit_form.values["user_edit_password2"][0]}">
+                        <input type="password" name="user_edit_password2" placeholder="neues Passwort wdh." value="${user_edit_form.values["user_edit_password2"][0]}">
                     </div>
 
 
@@ -131,6 +131,7 @@
                         </button>
                         <button class="icon-pencil" type="button">
                             Benutzer löschen
+                            
                         </button>
                     </div>
                 </div>

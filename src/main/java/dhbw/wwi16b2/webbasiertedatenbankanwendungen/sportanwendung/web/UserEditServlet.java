@@ -77,6 +77,9 @@ public class UserEditServlet extends HttpServlet {
         String height = request.getParameter("user_edit_height");
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
+        //   System.out.println("Passwort1:" + password1);
+        //   System.out.println("Passwort2:" + password2);
+        //   System.out.println("Altes Passwort:" + oldpassword);
         List<String> errors = new ArrayList<>();
         User user = this.userbean.getCurrentUser();
 
@@ -94,7 +97,7 @@ public class UserEditServlet extends HttpServlet {
         user.setWeight(new Integer(weight));
         user.setHeight(new Integer(height));
 
-        if(!(password1.equals("")&& password2.equals("")&&oldpassword.equals(""))) {
+        if ((!password1.equals("")) || (!password2.equals("")) || (!oldpassword.equals(""))) {
 
             if (!password1.equals(password2)) {
                 errors.add("Passwörter stimmen nicht überein");
@@ -102,6 +105,10 @@ public class UserEditServlet extends HttpServlet {
             if (!user.checkPassword(oldpassword)) {
                 errors.add("Das alte Passwort ist falsch");
             }
+            if (password1.length()<6){
+                errors.add("Das neue Passwort muss mindestens 6-stellig sein");
+            }
+            
             if (errors.isEmpty()) {
                 user.setPassword(password1);
             }
