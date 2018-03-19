@@ -129,7 +129,7 @@
                         <button class="icon-pencil" type="submit">
                             Benutzerdaten ändern
                         </button>
-                        <button class="icon-pencil" type="button">
+                        <button class="icon-pencil" type="button" value="true" name="löschen">
                             Benutzer löschen
                             
                         </button>

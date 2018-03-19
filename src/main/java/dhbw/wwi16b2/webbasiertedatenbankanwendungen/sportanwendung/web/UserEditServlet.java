@@ -61,6 +61,15 @@ public class UserEditServlet extends HttpServlet {
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
+        String loeschen = request.getParameter("löschen");
+        
+     //   if(loeschen.equals("true")){
+     //       User user= this.userbean.getCurrentUser();
+     //       response.sendRedirect();
+     //       
+     //       this.userbean.delete(user);
+     //   }
 
         request.setCharacterEncoding("utf-8");
 
