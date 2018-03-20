@@ -84,7 +84,7 @@ public class UserBean {
      */
     @RolesAllowed("sportanwendung-user")
     public void delete(User user) {
-        this.em.remove(user);
+        this.em.remove(em.merge(user));
     }
     
     /**

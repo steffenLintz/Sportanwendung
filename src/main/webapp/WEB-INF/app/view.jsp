@@ -40,8 +40,8 @@
 
                             </div>
                             <form method="post">
-                                 <input type="hidden" name="csrf_token" value="${csrf_token}">
-                                 
+                                <input type="hidden" name="csrf_token" value="${csrf_token}">
+
                                 <button id="delete" type="submit">Diese Aktivität löschen</button>
                             </form>
 
