@@ -85,8 +85,8 @@
                     </label>
                     <div class="geschlecht">
                         <select name="user_edit_gender" value="${user_edit_form.values["user_edit_gender"][0]}">
-                            <option>männlich</option>
-                            <option>weiblich</option>
+                            <option value="männlich">männlich</option>
+                            <option value="weiblich">weiblich</option>
                         </select>
                     </div>
 

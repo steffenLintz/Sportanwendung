@@ -34,8 +34,16 @@ public class ViewServlet extends HttpServlet {
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
+        
+        HttpSession session = request.getSession();
+        
         Activity activity = this.activityBean.findById(Long.parseLong(request.getRequestURI().substring(25)));
+        
+        if(activity.getSporttype().getName().equals("Kraftsport")){
+             session.setAttribute("title", "Anzahl Wiederholungen");
+        }else{
+            session.setAttribute("title", "Distanz in km");
+        }
         
           Date d =activity.getDate();
           SimpleDateFormat format= new SimpleDateFormat("yyyy-MM-dd");
@@ -44,7 +52,7 @@ public class ViewServlet extends HttpServlet {
 
         //  Activity current = this.activityBean.findById();
         // Anfrage an dazugerhörige JSP weiterleiten
-        HttpSession session = request.getSession();
+   
         session.setAttribute("activity", activity);
         session.setAttribute("adate", adate);
         session.setAttribute("anlegen", "true");

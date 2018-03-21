@@ -64,6 +64,7 @@ public class CreateNewServlet extends HttpServlet {
         String duration = request.getParameter("activity_duration");
         String date = request.getParameter("activity_date");
         String time = request.getParameter("activity_time");
+        String distance = request.getParameter("activity_distance");
         //   String rating = request.getParameter("activity_rating");
 
         System.out.println(date);
@@ -74,6 +75,7 @@ public class CreateNewServlet extends HttpServlet {
         String rating = "";
 
         int duration2 = 0;
+        int distance2 = 0;
         int year = 0;
         int month = 0;
         int day = 0;
@@ -87,6 +89,10 @@ public class CreateNewServlet extends HttpServlet {
 
         if (!duration.equals("")) {
             duration2 = Integer.parseInt(duration);
+        }
+        
+        if (!distance.equals("")) {
+            distance2 = Integer.parseInt(duration);
         }
 
         if (!date.equals("")) {
@@ -110,10 +116,10 @@ public class CreateNewServlet extends HttpServlet {
 
         if (rating.equals("")) {
             // Eingaben prüfen
-            activity = new Activity(new Sporttype(sporttype), date2, duration2, this.userbean.getCurrentUser());
+            activity = new Activity(new Sporttype(sporttype), date2, duration2,distance2, this.userbean.getCurrentUser());
             errors = this.validationBean.validate(activity);
         } else {
-            activity = new Activity(new Sporttype(sporttype), date2, duration2, rating2, this.userbean.getCurrentUser());
+            activity = new Activity(new Sporttype(sporttype), date2, rating2,duration2,distance2, this.userbean.getCurrentUser());
             errors = this.validationBean.validate(activity);
         }
        

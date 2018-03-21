@@ -96,8 +96,12 @@ public class UserEditServlet extends HttpServlet {
             try {
                 user.setBirthdate(dateFormat.parse(birthdate));
             } catch (ParseException ex) {
+                errors.add("Gültiges Geburtsdatum angeben");
             }
+        }else{
+            errors.add("Geburtsdatum angeben");
         }
+        
 
         user.setFirstname(firstname);
         user.setLastname(lastname);

@@ -92,8 +92,8 @@
                     </label>
                     <div class="geschlecht">
                         <select name="signup_gender" value="${signup_form.values["signup_gender"][0]}">
-                            <option>männlich</option>
-                            <option>weiblich</option>
+                            <option value="männlich">männlich</option>
+                            <option value="weiblich">weiblich</option>
                         </select>
                     </div>
 

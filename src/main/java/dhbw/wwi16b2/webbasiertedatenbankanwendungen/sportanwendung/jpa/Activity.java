@@ -48,6 +48,11 @@ public class Activity implements Serializable {
     @Column(name = "DURATION")
     private int duration;
     
+    @NotNull(message="Es muss eine Distanz oder Anzahl Wiederholungen angegeben werden")
+    @Min(value=1, message="Dauer der Aktivität/Anzahl Wiederholungen muss mindestens 1 Minute sein")
+    @Column(name = "DISTANCE")
+    private int distance;
+    
     @Column(name = "RATING")
     private int rating;
 
@@ -61,73 +66,82 @@ public class Activity implements Serializable {
 
 
 
-    public Activity(Sporttype sporttype, Date date, int duration, int rating, User user) {
+    public Activity(Sporttype sporttype, Date date, int duration, int rating, int distance, User user) {
         this.sporttype = sporttype;
         this.date = date;
         this.duration = duration;
         this.rating = rating;
         this.calories = (sporttype.getMet()* user.getWeight()* duration)/60;
         this.user = user;
+        this.distance=distance;
     }
 
-    public Activity(Sporttype sporttype, Date date, int duration, User user) {
+    public Activity(Sporttype sporttype, Date date, int duration,int distance, User user) {
         this.sporttype = sporttype;
         this.date = date;
         this.duration = duration;
         this.user = user;
         this.calories = (sporttype.getMet()* user.getWeight()* duration)/60;
+        this.distance=distance;
     }
 
+    //<editor-fold defaultstate="collapsed" desc="Getter and Setter">
     
+    public int getDistance() {
+        return distance;
+    }
     
-    
+    public void setDistance(int distance) {
+        this.distance = distance;
+    }
     
     public long getId() {
         return id;
     }
-
+    
     public void setId(long id) {
         this.id = id;
     }
-
+    
     public int getCalories() {
         return calories;
     }
-
-    public void setCalories(int calories) {
-        this.calories = calories;
+    
+    public void setCalories() {
+        this.calories = (sporttype.getMet()* user.getWeight()* duration)/60;
     }
-
+    
     public Date getDate() {
         return date;
     }
-
+    
     public void setDate(Date date) {
         this.date = date;
     }
-
+    
     public int getDuration() {
         return duration;
     }
-
+    
     public void setDuration(int duration) {
         this.duration = duration;
     }
-
+    
     public int getRating() {
         return rating;
     }
-
+    
     public void setRating(int rating) {
         this.rating = rating;
     }
-
+    
     public Sporttype getSporttype() {
         return sporttype;
     }
-
+    
     public void setSporttype(Sporttype sporttype) {
         this.sporttype = sporttype;
     }
     
+//</editor-fold>
 }

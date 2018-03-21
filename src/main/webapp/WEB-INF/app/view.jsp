@@ -25,25 +25,33 @@
 
             <h1>Details</h1>
 
-            <h3>Verbrannte Kalorien</h2>
-                <img id="sportpicture" src=${activity.sporttype.picture}>
-                <div>${activity.calories} kcal</div>
-                <h3>Datum</h2>
-                    <div>
-                        <input type="date" disabled="true" value=${adate}>
-                    </div>
-                    <h3>Dauer</h2>
-                        <div>${activity.duration} Minuten</div>
-                        <h3>Sportart</h2>
-                            <div>${activity.sporttype.name}</div>
+            <button id="bearbeiten" onclick="document.location.href = this.getAttribute('href');" href="/sportanwendung/app/changeActivity/${activity.id}"> Aktivität Bearbeiten</button>
+
+            <h3>Verbrannte Kalorien</h3>
+            <img id="sportpicture" src=${activity.sporttype.picture}>
+            <div>${activity.calories} kcal</div>
+
+            <h3>Datum</h3>
+            <div>
+                <input type="date" disabled="true" value=${adate}>
+            </div>
+            <h3>Dauer</h3>
+            <div>${activity.duration} Minuten</div>
+            
+
+            <h3><div id="distance">${title}</div> </h3>
+            <div>${activity.distance}</div>
+
+            <h3>Sportart</h3>
+            <div id="sportname">${activity.sporttype.name}</div>
 
 
-                            </div>
-                            <form method="post">
-                                <input type="hidden" name="csrf_token" value="${csrf_token}">
+        </div>
+        <form method="post">
+            <input type="hidden" name="csrf_token" value="${csrf_token}">
 
-                                <button id="delete" type="submit">Diese Aktivität löschen</button>
-                            </form>
+            <button id="delete" type="submit">Diese Aktivität löschen</button>
+        </form>
 
-                        </jsp:attribute>
-                    </template:base>
+    </jsp:attribute>
+</template:base>

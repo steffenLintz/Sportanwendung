@@ -47,9 +47,9 @@
                             selector.onchange = function () {
                                 var show = document.getElementById('distance');
                                 if(this.value === "Kraftsport"){
-                                show.innerHTML = "Anzahl Wiederholungen";
+                                show.innerHTML = "Anzahl Wiederholungen <span class='required'>*</span>";
                             }else{
-                                show.innerHTML = "Zurückgelegte Distanz in km";
+                                show.innerHTML = "Zurückgelegte Distanz in km <span class='required'>*</span>";
                             }
                             }
                         </script>

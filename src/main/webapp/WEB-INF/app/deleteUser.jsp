@@ -13,7 +13,7 @@
 
 <template:base>
     <jsp:attribute name="title">
-        Details
+        Benutzer löschen
     </jsp:attribute>
     <jsp:attribute name="head">
         <link rel="stylesheet" href="<c:url value="/css/home.css"/>" />
