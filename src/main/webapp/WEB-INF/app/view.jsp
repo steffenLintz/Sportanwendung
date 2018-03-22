@@ -58,7 +58,7 @@
 
 
             <form method="post">
-                <div class="stars" style="width: 150px; ">
+                <div class="stars" style="width: 150px; pointer-events: none ">
 
                     <input type="radio" name="star" class="star-1" id="star-1" ${star1}  value="1" readonly="readonly"/>
                     <label class="star-1" for="star-1">1</label>
