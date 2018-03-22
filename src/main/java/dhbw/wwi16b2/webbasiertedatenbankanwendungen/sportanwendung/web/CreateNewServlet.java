@@ -18,6 +18,7 @@ import java.util.List;
 import javax.ejb.EJB;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -66,6 +67,12 @@ public class CreateNewServlet extends HttpServlet {
         String time = request.getParameter("activity_time");
         String distance = request.getParameter("activity_distance");
         String rating = "";
+        
+        
+        String rating3 = request.getParameter("star");
+        System.out.println(rating3);
+      
+        
         
         System.out.println(date);
         System.out.println(time);
