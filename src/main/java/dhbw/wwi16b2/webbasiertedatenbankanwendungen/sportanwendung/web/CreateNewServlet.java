@@ -65,14 +65,14 @@ public class CreateNewServlet extends HttpServlet {
         String date = request.getParameter("activity_date");
         String time = request.getParameter("activity_time");
         String distance = request.getParameter("activity_distance");
-        //   String rating = request.getParameter("activity_rating");
-
+        String rating = "";
+        
         System.out.println(date);
         System.out.println(time);
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        SimpleDateFormat dateFormat2 = new SimpleDateFormat("yyyy-MM-dd hh:mm");
+        SimpleDateFormat dateFormat2 = new SimpleDateFormat("yyyy-MM-dd HH:mm");
         //Test
-        String rating = "";
+        
 
         int duration2 = 0;
         int distance2 = 0;
@@ -102,14 +102,9 @@ public class CreateNewServlet extends HttpServlet {
             }
         }
 
-        if (!time.equals("")) {
-            hours = Integer.parseInt(time.substring(0, 1));
-            minutes = Integer.parseInt(time.substring(3));
-        }
-
         if (!date.equals("") && !time.equals("")) {
             try {
-                date2= dateFormat2.parse(date+" "+time);
+                date2 = dateFormat2.parse(date+" "+time);
             } catch (Exception e) {
             }
         }

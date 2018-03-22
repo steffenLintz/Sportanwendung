@@ -35,7 +35,15 @@
                 <div class="weight">
                     <input type="date"  name="activity_edit_date" value=${adate}> 
                 </div>
-
+                
+                <label for="activity_edit_time">
+                    <h3>Uhrzeit
+                        <span class="required">*</span>
+                    </h3>
+                </label>  
+                <div class="weight">
+                    <input type="time"  name="activity_edit_time" value=${atime}> 
+                </div>
 
                 <label for="activity_edit_duration">
                     <h3>Dauer

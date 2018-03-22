@@ -35,6 +35,10 @@
             <div>
                 <input type="date" disabled="true" value=${adate}>
             </div>
+            <h3>Uhrzeit</h3>
+            <div>
+                <input type="time" disabled="true" value=${atime}>
+            </div>
             <h3>Dauer</h3>
             <div>${activity.duration} Minuten</div>
             

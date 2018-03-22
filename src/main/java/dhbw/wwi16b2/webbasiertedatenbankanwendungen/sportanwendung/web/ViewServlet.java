@@ -45,16 +45,20 @@ public class ViewServlet extends HttpServlet {
             session.setAttribute("title", "Distanz in km");
         }
         
-          Date d =activity.getDate();
-          SimpleDateFormat format= new SimpleDateFormat("yyyy-MM-dd");
+          Date d = activity.getDate();
+          
+          SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+          SimpleDateFormat format2 = new SimpleDateFormat("HH:mm");
           
           String adate = format.format(d);
-
+          String atime = format2.format(d);
+          
         //  Activity current = this.activityBean.findById();
         // Anfrage an dazugerhörige JSP weiterleiten
    
         session.setAttribute("activity", activity);
         session.setAttribute("adate", adate);
+        session.setAttribute("atime", atime);
         session.setAttribute("anlegen", "true");
         session.removeAttribute("user_edit");
 

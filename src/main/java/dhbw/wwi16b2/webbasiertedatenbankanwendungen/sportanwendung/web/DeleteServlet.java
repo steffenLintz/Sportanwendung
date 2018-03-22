@@ -9,9 +9,12 @@
  */
 package dhbw.wwi16b2.webbasiertedatenbankanwendungen.sportanwendung.web;
 
+import dhbw.wwi16b2.webbasiertedatenbankanwendungen.sportanwendung.ejb.ActivityBean;
 import dhbw.wwi16b2.webbasiertedatenbankanwendungen.sportanwendung.ejb.UserBean;
+import dhbw.wwi16b2.webbasiertedatenbankanwendungen.sportanwendung.jpa.Activity;
 import dhbw.wwi16b2.webbasiertedatenbankanwendungen.sportanwendung.jpa.User;
 import java.io.IOException;
+import java.util.List;
 import javax.ejb.EJB;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -29,11 +32,20 @@ import javax.servlet.http.HttpServletResponse;
 public class DeleteServlet extends HttpServlet {
     @EJB
     UserBean userBean;
+    
+    @EJB
+    ActivityBean activityBean;
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        User user= this.userBean.getCurrentUser();
+        User user = this.userBean.getCurrentUser();
+        
+        List<Activity> activities = this.activityBean.findAllAcitvities();
+        for (Activity a : activities){
+            this.activityBean.delete(a);
+        }
+        
         request.getSession().invalidate();
         this.userBean.delete(user);
         response.sendRedirect(WebUtils.appUrl(request, "/"));

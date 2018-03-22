@@ -55,17 +55,18 @@ public class changeActivityServlet extends HttpServlet {
         
         String calories = request.getParameter("activity_edit_calories");
         String date = request.getParameter("activity_edit_date");
+        String time = request.getParameter("activity_edit_time");
         String duration = request.getParameter("activity_edit_duration");
         String distance = request.getParameter("activity_edit_distance");
         String sporttype = request.getParameter("activity_edit_sporttype");
         List<String> errors = new ArrayList<>();
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
         
         
         
-        if(!date.equals("")){
+        if(!date.equals("") && !time.equals("")){
             try {
-                activity.setDate(dateFormat.parse(date));
+                activity.setDate(dateFormat.parse(date+" "+time));
             } catch (Exception ex) {
              errors.add("Datum angeben");
             }
@@ -130,10 +131,13 @@ public class changeActivityServlet extends HttpServlet {
 
         Activity activity = this.activityBean.findById(Long.parseLong(request.getRequestURI().substring(35)));
         
-        Date d =activity.getDate();
-        SimpleDateFormat format= new SimpleDateFormat("yyyy-MM-dd");
-          
+        Date d = activity.getDate();
+        
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat format2 = new SimpleDateFormat("HH:mm");
+
         String adate = format.format(d);
+        String atime = format2.format(d);
         
         HttpSession session = request.getSession();
         
@@ -202,6 +206,7 @@ public class changeActivityServlet extends HttpServlet {
  
         session.setAttribute("activity", activity);
         session.setAttribute("adate", adate);
+        session.setAttribute("atime", atime);
         session.setAttribute("anlegen", "true");
         session.removeAttribute("changeActivity");
         session.setAttribute("changeActivity", this.createActivityForm(activity));

@@ -39,7 +39,7 @@ public class Activity implements Serializable {
     private int calories;
     
     @NotNull(message="Es muss ein Datum und eine Uhrzeit angeben werden")
-    @Temporal(javax.persistence.TemporalType.DATE)
+    @Temporal(javax.persistence.TemporalType.TIMESTAMP)
     @Column(name = "DATE")
     private Date date;
     
