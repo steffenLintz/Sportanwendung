@@ -95,7 +95,7 @@
                     <div class="stars" style="width: 150px; ">
                         
                         
-                        <input type="radio" name="star" class="star-1" id="star-1" value="1"/>
+                        <input type="radio" name="star" class="star-1" id="star-1" checked="checked" value="1"/>
                         <label class="star-1" for="star-1">1</label>
                         <input type="radio" name="star" class="star-2" id="star-2" value="2"/>
                         <label class="star-2" for="star-2">2</label>
