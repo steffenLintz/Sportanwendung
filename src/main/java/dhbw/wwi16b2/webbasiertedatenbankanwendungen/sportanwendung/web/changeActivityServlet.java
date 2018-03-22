@@ -40,19 +40,18 @@ public class changeActivityServlet extends HttpServlet {
 
     @EJB
     ActivityBean activityBean;
-    
+
     @EJB
     ValidationBean validationBean;
-    
+
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-        
+
         request.setCharacterEncoding("utf-8");
-        
+
         Activity activity = this.activityBean.findById(Long.parseLong(request.getRequestURI().substring(35)));
-        
+
         String calories = request.getParameter("activity_edit_calories");
         String date = request.getParameter("activity_edit_date");
         String time = request.getParameter("activity_edit_time");
@@ -61,44 +60,45 @@ public class changeActivityServlet extends HttpServlet {
         String sporttype = request.getParameter("activity_edit_sporttype");
         List<String> errors = new ArrayList<>();
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
-        
-        
-        
-        if(!date.equals("") && !time.equals("")){
+        String rating = request.getParameter("star");
+
+        activity.setRating(Integer.parseInt(rating));
+
+        if (!date.equals("") && !time.equals("")) {
             try {
-                activity.setDate(dateFormat.parse(date+" "+time));
+                activity.setDate(dateFormat.parse(date + " " + time));
             } catch (Exception ex) {
-             errors.add("Datum angeben");
+                errors.add("Datum angeben");
             }
-        }else{
+        } else {
             errors.add("Datum angeben");
         }
-        
-        if(!duration.equals("")){
-           try {
+
+        if (!duration.equals("")) {
+            try {
                 activity.setDuration(new Integer(duration));
-            } catch (Exception ex){
-             errors.add("Dauer angeben");
+            } catch (Exception ex) {
+                errors.add("Dauer angeben");
             }
-        }else{
+        } else {
             errors.add("Dauer angeben");
         }
-        
-        if(!distance.equals("")){
-            try{
+
+        if (!distance.equals("")) {
+            try {
                 activity.setDistance(new Integer(distance));
-            }catch (Exception ex){
+            } catch (Exception ex) {
                 errors.add("Distanz/Anzahl Wiederholungen angeben");
             }
-        }else{
+        } else {
             errors.add("Distanz/Anzahl Wiederholungen angeben");
         }
-        
+
         activity.setSporttype(new Sporttype(sporttype));
-        
+
         activity.setCalories();
-        
-         this.validationBean.validate(activity, errors);
+
+        this.validationBean.validate(activity, errors);
 
         // Datensatz speichern
         if (errors.isEmpty()) {
@@ -121,8 +121,7 @@ public class changeActivityServlet extends HttpServlet {
 
             response.sendRedirect(request.getRequestURI());
         }
-        
-        
+
     }
 
     @Override
@@ -130,80 +129,80 @@ public class changeActivityServlet extends HttpServlet {
             throws ServletException, IOException {
 
         Activity activity = this.activityBean.findById(Long.parseLong(request.getRequestURI().substring(35)));
-        
+
         Date d = activity.getDate();
-        
+
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         SimpleDateFormat format2 = new SimpleDateFormat("HH:mm");
 
         String adate = format.format(d);
         String atime = format2.format(d);
-        
+
         HttpSession session = request.getSession();
-        
+
         switch (activity.getSporttype().getName()) {
-                case "Fußball":
-                 session.removeAttribute("sporttype1");
-                 session.removeAttribute("sporttype2");
-                 session.removeAttribute("sporttype3");
-                 session.removeAttribute("sporttype4");
-                 session.removeAttribute("sporttype5");
-                 session.removeAttribute("sporttype6");
-                 session.setAttribute("title", "Distanz in km");
-                 session.setAttribute("sporttype1", "selected");
-                 break;
+            case "Fußball":
+                session.removeAttribute("sporttype1");
+                session.removeAttribute("sporttype2");
+                session.removeAttribute("sporttype3");
+                session.removeAttribute("sporttype4");
+                session.removeAttribute("sporttype5");
+                session.removeAttribute("sporttype6");
+                session.setAttribute("title", "Distanz in km");
+                session.setAttribute("sporttype1", "selected");
+                break;
             case "Tennis":
-                 session.removeAttribute("sporttype1");
-                 session.removeAttribute("sporttype2");
-                 session.removeAttribute("sporttype3");
-                 session.removeAttribute("sporttype4");
-                 session.removeAttribute("sporttype5");
-                 session.removeAttribute("sporttype6");
-                 session.setAttribute("title", "Distanz in km");
-                 session.setAttribute("sporttype2", "selected");
-                 break;
+                session.removeAttribute("sporttype1");
+                session.removeAttribute("sporttype2");
+                session.removeAttribute("sporttype3");
+                session.removeAttribute("sporttype4");
+                session.removeAttribute("sporttype5");
+                session.removeAttribute("sporttype6");
+                session.setAttribute("title", "Distanz in km");
+                session.setAttribute("sporttype2", "selected");
+                break;
             case "Schwimmen":
-                 session.removeAttribute("sporttype1");
-                 session.removeAttribute("sporttype2");
-                 session.removeAttribute("sporttype3");
-                 session.removeAttribute("sporttype4");
-                 session.removeAttribute("sporttype5");
-                 session.removeAttribute("sporttype6");
-                 session.setAttribute("title", "Distanz in km");
-                 session.setAttribute("sporttype3", "selected");
+                session.removeAttribute("sporttype1");
+                session.removeAttribute("sporttype2");
+                session.removeAttribute("sporttype3");
+                session.removeAttribute("sporttype4");
+                session.removeAttribute("sporttype5");
+                session.removeAttribute("sporttype6");
+                session.setAttribute("title", "Distanz in km");
+                session.setAttribute("sporttype3", "selected");
                 break;
             case "Fahrrad":
-                 session.removeAttribute("sporttype1");
-                 session.removeAttribute("sporttype2");
-                 session.removeAttribute("sporttype3");
-                 session.removeAttribute("sporttype4");
-                 session.removeAttribute("sporttype5");
-                 session.removeAttribute("sporttype6");
-                 session.setAttribute("title", "Distanz in km");
-                 session.setAttribute("sporttype4", "selected");
+                session.removeAttribute("sporttype1");
+                session.removeAttribute("sporttype2");
+                session.removeAttribute("sporttype3");
+                session.removeAttribute("sporttype4");
+                session.removeAttribute("sporttype5");
+                session.removeAttribute("sporttype6");
+                session.setAttribute("title", "Distanz in km");
+                session.setAttribute("sporttype4", "selected");
                 break;
             case "Laufen":
-                 session.removeAttribute("sporttype1");
-                 session.removeAttribute("sporttype2");
-                 session.removeAttribute("sporttype3");
-                 session.removeAttribute("sporttype4");
-                 session.removeAttribute("sporttype5");
-                 session.removeAttribute("sporttype6");
-                 session.setAttribute("title", "Distanz in km");
-                 session.setAttribute("sporttype5", "selected");
-                  break;
+                session.removeAttribute("sporttype1");
+                session.removeAttribute("sporttype2");
+                session.removeAttribute("sporttype3");
+                session.removeAttribute("sporttype4");
+                session.removeAttribute("sporttype5");
+                session.removeAttribute("sporttype6");
+                session.setAttribute("title", "Distanz in km");
+                session.setAttribute("sporttype5", "selected");
+                break;
             case "Kraftsport":
-                 session.removeAttribute("sporttype1");
-                 session.removeAttribute("sporttype2");
-                 session.removeAttribute("sporttype3");
-                 session.removeAttribute("sporttype4");
-                 session.removeAttribute("sporttype5");
-                 session.removeAttribute("sporttype6");
-                 session.setAttribute("title", "Anzahl Wiederholungen");
-                 session.setAttribute("sporttype6", "selected");
-                  break;
-            }
- 
+                session.removeAttribute("sporttype1");
+                session.removeAttribute("sporttype2");
+                session.removeAttribute("sporttype3");
+                session.removeAttribute("sporttype4");
+                session.removeAttribute("sporttype5");
+                session.removeAttribute("sporttype6");
+                session.setAttribute("title", "Anzahl Wiederholungen");
+                session.setAttribute("sporttype6", "selected");
+                break;
+        }
+
         session.setAttribute("activity", activity);
         session.setAttribute("adate", adate);
         session.setAttribute("atime", atime);
@@ -211,30 +210,68 @@ public class changeActivityServlet extends HttpServlet {
         session.removeAttribute("changeActivity");
         session.setAttribute("changeActivity", this.createActivityForm(activity));
 
+        session.removeAttribute("star1");
+        session.removeAttribute("star2");
+        session.removeAttribute("star3");
+        session.removeAttribute("star4");
+        session.removeAttribute("star5");
+
+        System.out.println(activity.getRating());
+
+        switch (activity.getRating()) {
+            case 1:
+                System.out.println("hier1");
+                session.setAttribute("star1", "checked= 'checked'");
+
+                break;
+            case 2:
+                System.out.println("hier2");
+                session.setAttribute("star2", "checked= 'checked'");
+
+                break;
+            case 3:
+                System.out.println("hier3");
+
+                session.setAttribute("star3", "checked= 'checked'");
+
+                break;
+            case 4:
+                System.out.println("hier4");
+
+                session.setAttribute("star4", "checked= 'checked'");
+
+                break;
+            case 5:
+                System.out.println("hier5");
+
+                session.setAttribute("star5", "checked= 'checked'");
+                break;
+        }
+
         RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/app/changeActivity.jsp");
         dispatcher.forward(request, response);
 
     }
-     private FormValues createActivityForm(Activity activity) {
+
+    private FormValues createActivityForm(Activity activity) {
         Map<String, String[]> values = new HashMap<>();
 
         values.put("activity_edit_calories", new String[]{
-            ""+activity.getCalories()
+            "" + activity.getCalories()
         });
 
         values.put("activity_edit_duration", new String[]{
-            ""+activity.getDuration()
+            "" + activity.getDuration()
         });
-        
+
         values.put("activity_edit_distance", new String[]{
-            ""+activity.getDistance()
+            "" + activity.getDistance()
         });
 
         values.put("activity_edit_sporttype", new String[]{
             activity.getSporttype().getName()
         });
 
-       
         FormValues formValues = new FormValues();
         formValues.setValues(values);
         return formValues;
