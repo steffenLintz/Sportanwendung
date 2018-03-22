@@ -17,31 +17,34 @@ import static org.junit.Assert.*;
  */
 public class ActivityTest {
     
-    static Sporttype expSporttype = new Sporttype("Fußball");
-    static Date expDate = new Date();
-    static int expDuration = 20;
-    static int expRating = 2;
+    Sporttype expSporttype = new Sporttype("Fußball");
+    Date expDate = new Date();
+    int expDuration = 20;
+    int expRating = 2;
     
-    static String expUsername = "test1234";    
-    static String expPassword = "test1234";
-    static String expEmail = "test@test.de"; 
-    static String expFirstname = "ftest";
-    static String expLastname = "ltest"; 
-    static String expGender = "männlich"; 
-    static int expWeight = 50;
-    static int expHeight = 123;
+    String expUsername = "test1234";    
+    String expPassword = "test1234";
+    String expEmail = "test@test.de"; 
+    String expFirstname = "ftest";
+    String expLastname = "ltest"; 
+    String expGender = "männlich"; 
+    int expWeight = 50;
+    int expHeight = 123;
     
-    static User expUser = new User(expUsername, expPassword, expEmail, expFirstname, expLastname, expGender, expDate, expWeight, expHeight);
+    User expUser = new User(expUsername, expPassword, expEmail, expFirstname, expLastname, expGender, expDate, expWeight, expHeight);
     
-    static Activity activity = new Activity(expSporttype, expDate, expDuration, expRating, expUser);
+    Activity activity = new Activity(expSporttype, expDate, expDuration, expRating, expUser);
     
     int expCalories = (7 * expWeight * expDuration)/60;
+    
+    Long l = expSporttype.getId();
     
     public ActivityTest() {
     }
     
     @Before
     public void setUp() {
+        System.out.println(l);
     }
     
     @After
