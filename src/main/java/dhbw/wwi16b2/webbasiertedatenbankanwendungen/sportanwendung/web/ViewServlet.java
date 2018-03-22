@@ -34,33 +34,70 @@ public class ViewServlet extends HttpServlet {
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
         HttpSession session = request.getSession();
-        
+
         Activity activity = this.activityBean.findById(Long.parseLong(request.getRequestURI().substring(25)));
-        
-        if(activity.getSporttype().getName().equals("Kraftsport")){
-             session.setAttribute("title", "Anzahl Wiederholungen");
-        }else{
+
+        if (activity.getSporttype().getName().equals("Kraftsport")) {
+            session.setAttribute("title", "Anzahl Wiederholungen");
+        } else {
             session.setAttribute("title", "Distanz in km");
         }
-        
-          Date d = activity.getDate();
-          
-          SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-          SimpleDateFormat format2 = new SimpleDateFormat("HH:mm");
-          
-          String adate = format.format(d);
-          String atime = format2.format(d);
-          
-        //  Activity current = this.activityBean.findById();
+
+        Date d = activity.getDate();
+
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat format2 = new SimpleDateFormat("HH:mm");
+
+        String adate = format.format(d);
+        String atime = format2.format(d);
+
         // Anfrage an dazugerhörige JSP weiterleiten
-   
         session.setAttribute("activity", activity);
         session.setAttribute("adate", adate);
         session.setAttribute("atime", atime);
         session.setAttribute("anlegen", "true");
         session.removeAttribute("user_edit");
+
+        session.removeAttribute("star1");
+        session.removeAttribute("star2");
+        session.removeAttribute("star3");
+        session.removeAttribute("star4");
+        session.removeAttribute("star5");
+
+        System.out.println(activity.getRating());
+
+        switch (activity.getRating()) {
+            case 1:
+                System.out.println("hier1");
+                session.setAttribute("star1", "checked= 'checked'");
+               
+                break;
+            case 2:
+                System.out.println("hier2");
+               session.setAttribute("star2", "checked= 'checked'");
+ 
+                break;
+            case 3:
+                System.out.println("hier3");
+
+                session.setAttribute("star3", "checked= 'checked'");
+               
+
+                break;
+            case 4:
+                System.out.println("hier4");
+               
+                session.setAttribute("star4", "checked= 'checked'");
+
+                break;
+            case 5:
+                System.out.println("hier5");
+             
+                session.setAttribute("star5", "checked= 'checked'");
+                break;
+        }
 
         RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/app/view.jsp");
         dispatcher.forward(request, response);
@@ -70,16 +107,14 @@ public class ViewServlet extends HttpServlet {
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
         Activity activity = this.activityBean.findById(Long.parseLong(request.getRequestURI().substring(25)));
         HttpSession session = request.getSession();
         session.removeAttribute("activity");
         this.activityBean.delete(activity);
-      
 
-        
         response.sendRedirect("/sportanwendung/app/home/");
-       
+
     }
 
 }

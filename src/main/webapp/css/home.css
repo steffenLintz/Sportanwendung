@@ -1,22 +1,22 @@
 .tiles {
     width: 55%;
     float: left;
-    
+
 }
 
 #piechart {
-                           width: 20vw;
-                         min-height: 80px; 
-                        min-width: 80px;
-                         height: 20vw;
+    width: 20vw;
+    min-height: 80px; 
+    min-width: 80px;
+    height: 20vw;
 }
 .chart {
- float: right;
- background-image: url(../img/pizza.png);
- background-position: center center;
- background-size: cover;
- background-size: calc(14vw);
- background-repeat: no-repeat;
+    float: right;
+    background-image: url(../img/pizza.png);
+    background-position: center center;
+    background-size: cover;
+    background-size: calc(14vw);
+    background-repeat: no-repeat;
 }
 
 .number {
