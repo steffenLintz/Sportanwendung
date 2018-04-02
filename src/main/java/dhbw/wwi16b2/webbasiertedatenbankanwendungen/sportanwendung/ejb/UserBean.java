@@ -26,7 +26,7 @@ public class UserBean {
 
     @PersistenceContext
     EntityManager em;
-    
+
     @Resource
     EJBContext ctx;
 
@@ -57,13 +57,14 @@ public class UserBean {
             throw new UserAlreadyExistsException("Der Benutzername $B ist bereits vergeben.".replace("$B", username));
         }
 
-        User user = new User(username, passwordHash,email,firstname,lastname,gender,birthdate,weight,height);
+        User user = new User(username, passwordHash, email, firstname, lastname, gender, birthdate, weight, height);
         user.addToGroup("sportanwendung-user");
         em.persist(user);
     }
 
     /**
      * Passwort ändern (ohne zu speichern)
+     *
      * @param user
      * @param oldPassword
      * @param newPassword
@@ -77,18 +78,20 @@ public class UserBean {
 
         user.setPassword(newPassword);
     }
-    
+
     /**
      * Benutzer löschen
+     *
      * @param user Zu löschender Benutzer
      */
     @RolesAllowed("sportanwendung-user")
     public void delete(User user) {
         this.em.remove(em.merge(user));
     }
-    
+
     /**
      * Benutzer aktualisieren
+     *
      * @param user Zu aktualisierender Benutzer
      * @return Gespeicherter Benutzer
      */

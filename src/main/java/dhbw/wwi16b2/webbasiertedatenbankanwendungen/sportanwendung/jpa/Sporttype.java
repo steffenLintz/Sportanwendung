@@ -50,7 +50,7 @@ public class Sporttype implements Serializable {
                 break;
             case "Fahrrad":
                 this.met = 10;
-                this.picture ="../../img/fahrrad.png";
+                this.picture = "../../img/fahrrad.png";
                 break;
             case "Laufen":
                 this.met = 12;

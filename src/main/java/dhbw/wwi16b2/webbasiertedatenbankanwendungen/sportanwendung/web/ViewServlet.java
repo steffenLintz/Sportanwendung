@@ -72,29 +72,28 @@ public class ViewServlet extends HttpServlet {
             case 1:
                 System.out.println("hier1");
                 session.setAttribute("star1", "checked= 'checked'");
-               
+
                 break;
             case 2:
                 System.out.println("hier2");
-               session.setAttribute("star2", "checked= 'checked'");
- 
+                session.setAttribute("star2", "checked= 'checked'");
+
                 break;
             case 3:
                 System.out.println("hier3");
 
                 session.setAttribute("star3", "checked= 'checked'");
-               
 
                 break;
             case 4:
                 System.out.println("hier4");
-               
+
                 session.setAttribute("star4", "checked= 'checked'");
 
                 break;
             case 5:
                 System.out.println("hier5");
-             
+
                 session.setAttribute("star5", "checked= 'checked'");
                 break;
         }

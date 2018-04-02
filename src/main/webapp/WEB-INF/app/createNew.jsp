@@ -46,11 +46,11 @@
                             var selector = document.getElementById('Typeselector');
                             selector.onchange = function () {
                                 var show = document.getElementById('distance');
-                                if(this.value === "Kraftsport"){
-                                show.innerHTML = "Anzahl Wiederholungen <span class='required'>*</span>";
-                            }else{
-                                show.innerHTML = "Zurückgelegte Distanz in km <span class='required'>*</span>";
-                            }
+                                if (this.value === "Kraftsport") {
+                                    show.innerHTML = "Anzahl Wiederholungen <span class='required'>*</span>";
+                                } else {
+                                    show.innerHTML = "Zurückgelegte Distanz in km <span class='required'>*</span>";
+                                }
                             }
                         </script>
                     </div>
@@ -63,7 +63,7 @@
                         <input id="standardinputs" type="number" name="activity_duration" placeholder="0" value="${createNew_form.values["activity_duration"][0]}">
                     </div>
                     <label id="distance" for="activity_distance">
-                           Zurückgelegte Distanz in km
+                        Zurückgelegte Distanz in km
                         <span class="required">*</span>
                     </label>
                     <div>
@@ -93,7 +93,7 @@
                     </label>  
 
                     <div class="stars" style="width: 150px; ">
-                         
+
                         <input type="radio" name="star" class="star-1" id="star-1" checked="checked" value="1"/>
                         <label class="star-1" for="star-1">1</label>
                         <input type="radio" name="star" class="star-2" id="star-2" value="2"/>

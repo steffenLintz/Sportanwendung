@@ -126,7 +126,7 @@ public class CsrfFilter implements Filter {
                     break;
                 }
             }
-            
+
             if (existingToken != null) {
                 tokenCache.remove(existingToken);
             }

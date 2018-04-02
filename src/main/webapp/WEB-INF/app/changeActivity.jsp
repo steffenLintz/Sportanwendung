@@ -91,28 +91,28 @@
                             }
                         };
                     </script>
-                    </div>
-                    <label for="activity_rating">
-                        Wie war die Aktivität für dich?   Wie hast du dich gefühlt?
-                    </label>  
+                </div>
+                <label for="activity_rating">
+                    Wie war die Aktivität für dich?   Wie hast du dich gefühlt?
+                </label>  
 
-                    <div class="stars" style="width: 150px; ">
+                <div class="stars" style="width: 150px; ">
 
-                        <input type="radio" name="star" class="star-1" id="star-1" ${star1}  value="1" readonly="readonly"/>
-                        <label class="star-1" for="star-1">1</label>
-                        <input type="radio" name="star" class="star-2" id="star-2" ${star2}  value="2" readonly="readonly"/>
-                        <label class="star-2" for="star-2">2</label>
-                        <input type="radio" name="star" class="star-3" id="star-3" ${star3}  value="3" readonly="readonly"/>
-                        <label class="star-3" for="star-3">3</label>
-                        <input type="radio" name="star" class="star-4" id="star-4" ${star4}  value="4" readonly="readonly"/>
-                        <label class="star-4" for="star-4">4</label>
-                        <input type="radio" name="star" class="star-5" id="star-5" ${star5}  value="5" readonly="readonly"/>
-                        <label class="star-5" for="star-5">5</label>
-                        <span></span>
-                    </div> 
+                    <input type="radio" name="star" class="star-1" id="star-1" ${star1}  value="1" readonly="readonly"/>
+                    <label class="star-1" for="star-1">1</label>
+                    <input type="radio" name="star" class="star-2" id="star-2" ${star2}  value="2" readonly="readonly"/>
+                    <label class="star-2" for="star-2">2</label>
+                    <input type="radio" name="star" class="star-3" id="star-3" ${star3}  value="3" readonly="readonly"/>
+                    <label class="star-3" for="star-3">3</label>
+                    <input type="radio" name="star" class="star-4" id="star-4" ${star4}  value="4" readonly="readonly"/>
+                    <label class="star-4" for="star-4">4</label>
+                    <input type="radio" name="star" class="star-5" id="star-5" ${star5}  value="5" readonly="readonly"/>
+                    <label class="star-5" for="star-5">5</label>
+                    <span></span>
+                </div> 
 
 
-                
+
 
                 <button id="delete"  type="submit">Speichern</button>
             </form>

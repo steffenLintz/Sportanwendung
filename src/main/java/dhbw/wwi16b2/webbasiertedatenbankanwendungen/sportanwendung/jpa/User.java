@@ -46,8 +46,9 @@ public class User implements Serializable {
     @Size(min = 5, max = 20, message = "Der Benutzername muss zwischen fünf und 20 Zeichen lang sein.")
     @NotNull(message = "Der Benutzername darf nicht leer sein.")
     private String username;
-    
+
     public class Password {
+
         @Size(min = 6, max = 64, message = "Das Passwort muss zwischen sechs und 64 Zeichen lang sein.")
         public String password = "";
     }
@@ -57,40 +58,38 @@ public class User implements Serializable {
     @Column(name = "PASSWORD_HASH", length = 64)
     @NotNull(message = "Das Passwort darf nicht leer sein.")
     private String passwordHash;
-    
+
     @Column(name = "EMAIL")
     @Pattern(regexp = "^\\w+@\\w+\\..{2,3}(.{2,3})?$", message = "Bei der Email handelt es sich um keine gültige Email")
     @NotNull(message = "Die Email darf nicht leer sein.")
     private String email;
-    
+
     @Column(name = "FIRSTNAME")
-    @Size(min=1,message = "Der Vorname darf nicht leer sein.")
+    @Size(min = 1, message = "Der Vorname darf nicht leer sein.")
     private String firstname;
-    
+
     @Column(name = "LASTNAME")
-    @Size(min=1,message = "Der Nachname darf nicht leer sein.")
+    @Size(min = 1, message = "Der Nachname darf nicht leer sein.")
     private String lastname;
-    
+
     @Column(name = "GENDER")
     @NotNull(message = "Kein gültiges Geschlecht")
     private String gender;
-    
+
     @Column(name = "BIRTHDATE")
     @NotNull(message = "Kein gültiges Datum")
-    @Past(message="Der Geburtstag muss in der Vergangenheit liegen")
+    @Past(message = "Der Geburtstag muss in der Vergangenheit liegen")
     private Date birthdate;
-    
+
     @Column(name = "WEIGHT")
-    @Min(value= 1, message = "Gewicht ist ungültig")
+    @Min(value = 1, message = "Gewicht ist ungültig")
     @NotNull(message = "Gewicht ist ungültig")
     private int weight;
-    
+
     @Column(name = "Height")
-    @Min(value= 1, message = "Größe ist ungültig")
+    @Min(value = 1, message = "Größe ist ungültig")
     @NotNull(message = "Größe ist ungültig")
     private int height;
-    
-    
 
     @ElementCollection
     @CollectionTable(
@@ -99,10 +98,9 @@ public class User implements Serializable {
     )
     @Column(name = "GROUPNAME")
     List<String> groups = new ArrayList<>();
-    
-    @OneToMany(mappedBy="user")
-    List <Activity> activites =new ArrayList<>();
-    
+
+    @OneToMany(mappedBy = "user")
+    List<Activity> activites = new ArrayList<>();
 
     //<editor-fold defaultstate="collapsed" desc="Konstruktoren">
     public User() {
@@ -110,7 +108,7 @@ public class User implements Serializable {
 
     public User(String username, String password, String email, String firstname, String lastname, String gender, Date birthdate, int weight, int height) {
         this.username = username;
-        this.password.password=password;
+        this.password.password = password;
         this.passwordHash = this.hashPassword(password);
         this.email = email;
         this.firstname = firstname;
@@ -121,9 +119,7 @@ public class User implements Serializable {
         this.height = height;
     }
 
-   
     //</editor-fold>
-
     //<editor-fold defaultstate="collapsed" desc="Setter und Getter">
     public String getUsername() {
         return username;
@@ -197,9 +193,7 @@ public class User implements Serializable {
         this.height = height;
     }
 
-   
     //</editor-fold>
-
     //<editor-fold defaultstate="collapsed" desc="Passwort setzen und prüfen">
     /**
      * Berechnet der Hash-Wert zu einem Passwort.
@@ -213,7 +207,7 @@ public class User implements Serializable {
         if (password == null) {
             password = "";
         }
-        
+
         try {
             MessageDigest digest = MessageDigest.getInstance("SHA-256");
             hash = digest.digest(password.getBytes(StandardCharsets.UTF_8));
@@ -229,10 +223,10 @@ public class User implements Serializable {
      * Berechnet einen Hashwert aus dem übergebenen Passwort und legt ihn im
      * Feld passwordHash ab. Somit wird das Passwort niemals als Klartext
      * gespeichert.
-     * 
+     *
      * Gleichzeitig wird das Passwort im nicht gespeicherten Feld password
-     * abgelegt, um durch die Bean Validation Annotationen überprüft werden
-     * zu können.
+     * abgelegt, um durch die Bean Validation Annotationen überprüft werden zu
+     * können.
      *
      * @param password Neues Passwort
      */
@@ -243,12 +237,13 @@ public class User implements Serializable {
 
     /**
      * Nur für die Validierung bei einer Passwortänderung!
+     *
      * @return Neues, beim Speichern gesetztes Passwort
      */
     public Password getPassword() {
         return this.password;
     }
-    
+
     /**
      * Prüft, ob das übergebene Passwort korrekt ist.
      *

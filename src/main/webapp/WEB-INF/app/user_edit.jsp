@@ -129,9 +129,9 @@
                         <button class="icon-pencil" type="submit">
                             Benutzerdaten ändern
                         </button>
-                        <button class="icon-pencil" onclick="document.location.href=this.getAttribute('href');" href="/sportanwendung/app/deleteUser/"  type="button" value="true" name="löschen">
+                        <button class="icon-pencil" onclick="document.location.href = this.getAttribute('href');" href="/sportanwendung/app/deleteUser/"  type="button" value="true" name="löschen">
                             Benutzer löschen
-                            
+
                         </button>
                     </div>
                 </div>

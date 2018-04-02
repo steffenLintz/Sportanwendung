@@ -31,7 +31,7 @@ public class HomeServlet extends HttpServlet {
 
     @EJB
     UserBean userbean;
-    
+
     @EJB
     ActivityBean activitybean;
 
@@ -39,36 +39,27 @@ public class HomeServlet extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-       
-
-      
-
         HttpSession session = request.getSession();
         session.removeAttribute("anlegen");
         session.removeAttribute("activities");
         session.setAttribute("user_edit", "true");
-        
 
-       
-        List <Activity> activity2= this.activitybean.findAllAcitvities();
-        int wholeCalories=0;
-        
-        for (Activity a : activity2){
-            wholeCalories= wholeCalories+ a.getCalories();
+        List<Activity> activity2 = this.activitybean.findAllAcitvities();
+        int wholeCalories = 0;
+
+        for (Activity a : activity2) {
+            wholeCalories = wholeCalories + a.getCalories();
         }
-        
-        
-        int ganzepizza = wholeCalories/1000;
-        int pizza =  (wholeCalories%1000)/10;
-        int nopizza = 100-pizza;
-        
-        
-        session.setAttribute("ganzepizza",ganzepizza);
-        session.setAttribute("pizza",pizza);
-        session.setAttribute("nopizza",nopizza);
 
-        
-        session.setAttribute("activities",this.activitybean.findAllAcitvities());
+        int ganzepizza = wholeCalories / 1000;
+        int pizza = (wholeCalories % 1000) / 10;
+        int nopizza = 100 - pizza;
+
+        session.setAttribute("ganzepizza", ganzepizza);
+        session.setAttribute("pizza", pizza);
+        session.setAttribute("nopizza", nopizza);
+
+        session.setAttribute("activities", this.activitybean.findAllAcitvities());
 
         // Anfrage an dazugerhörige JSP weiterleiten
         RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/app/home.jsp");

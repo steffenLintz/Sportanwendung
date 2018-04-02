@@ -75,7 +75,7 @@ public class ActivityBean extends EntityBean<Activity, Long> {
 
     public int calculateCalories(Sporttype sporttype, User user, int duration) {
 
-        return ((sporttype.getMet() * user.getWeight() * duration)/60);
+        return ((sporttype.getMet() * user.getWeight() * duration) / 60);
 
     }
 

@@ -25,48 +25,47 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet, dass den Anwender ausloggt (die Session beendet) und ihn dann
- * auf die Startseite weiterleitet.
+ * Servlet, dass den Anwender ausloggt (die Session beendet) und ihn dann auf
+ * die Startseite weiterleitet.
  */
 @WebServlet(urlPatterns = {"/app/deleteUser/"})
 public class DeleteServlet extends HttpServlet {
+
     @EJB
     UserBean userBean;
-    
+
     @EJB
     ActivityBean activityBean;
+
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
         User user = this.userBean.getCurrentUser();
-        
+
         List<Activity> activities = this.activityBean.findAllAcitvities();
-        for (Activity a : activities){
+        for (Activity a : activities) {
             this.activityBean.delete(a);
         }
-        
+
         request.getSession().invalidate();
         this.userBean.delete(user);
         response.sendRedirect(WebUtils.appUrl(request, "/"));
-    
+
     }
-    
-    
-    
 
     /**
      * GET-Anfrage: Seite anzeigen
-     * 
+     *
      * @param request
      * @param response
      * @throws IOException
-     * @throws ServletException 
+     * @throws ServletException
      */
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response)
-    throws IOException, ServletException {
-        
+            throws IOException, ServletException {
+
         request.getRequestDispatcher("/WEB-INF/app/deleteUser.jsp").forward(request, response);
 
     }

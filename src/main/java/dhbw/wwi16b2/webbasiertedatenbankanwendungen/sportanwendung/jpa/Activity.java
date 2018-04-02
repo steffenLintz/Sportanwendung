@@ -24,124 +24,120 @@ import javax.validation.constraints.NotNull;
  * @author z003ne3b
  */
 @Entity
-@Table(name="ACTIVITY")
+@Table(name = "ACTIVITY")
 public class Activity implements Serializable {
+
     @Id
-    @GeneratedValue(strategy = GenerationType.TABLE) 
-    private long id =0;
-    
+    @GeneratedValue(strategy = GenerationType.TABLE)
+    private long id = 0;
 
     @OneToOne
-    @NotNull(message="Es muss eine Sportart angegeben werden")
+    @NotNull(message = "Es muss eine Sportart angegeben werden")
     private Sporttype sporttype;
-    
+
     @Column(name = "CALORIES")
     private int calories;
-    
-    @NotNull(message="Es muss ein Datum und eine Uhrzeit angeben werden")
+
+    @NotNull(message = "Es muss ein Datum und eine Uhrzeit angeben werden")
     @Temporal(javax.persistence.TemporalType.TIMESTAMP)
     @Column(name = "DATE")
     private Date date;
-    
-    @NotNull(message="Es muss eine Dauer angegeben werden")
-    @Min(value=1, message="Dauer der Aktivität muss mindestens 1 Minute sein")
+
+    @NotNull(message = "Es muss eine Dauer angegeben werden")
+    @Min(value = 1, message = "Dauer der Aktivität muss mindestens 1 Minute sein")
     @Column(name = "DURATION")
     private int duration;
-    
-    @NotNull(message="Es muss eine Distanz oder Anzahl Wiederholungen angegeben werden")
-    @Min(value=1, message="Dauer der Aktivität/Anzahl Wiederholungen muss mindestens 1 Minute sein")
+
+    @NotNull(message = "Es muss eine Distanz oder Anzahl Wiederholungen angegeben werden")
+    @Min(value = 1, message = "Dauer der Aktivität/Anzahl Wiederholungen muss mindestens 1 Minute sein")
     @Column(name = "DISTANCE")
     private int distance;
-    
+
     @Column(name = "RATING")
     private int rating;
 
-    
     @ManyToOne
-    @NotNull(message="Es muss eine Benutzer zugeordnet werden")
+    @NotNull(message = "Es muss eine Benutzer zugeordnet werden")
     User user;
-    
+
     public Activity() {
     }
-
-
 
     public Activity(Sporttype sporttype, Date date, int duration, int rating, int distance, User user) {
         this.sporttype = sporttype;
         this.date = date;
         this.duration = duration;
         this.rating = rating;
-        this.calories = (sporttype.getMet()* user.getWeight()* duration)/60;
+        this.calories = (sporttype.getMet() * user.getWeight() * duration) / 60;
         this.user = user;
-        this.distance=distance;
+        this.distance = distance;
     }
 
-    public Activity(Sporttype sporttype, Date date, int duration,int distance, User user) {
+    public Activity(Sporttype sporttype, Date date, int duration, int distance, User user) {
         this.sporttype = sporttype;
         this.date = date;
         this.duration = duration;
         this.user = user;
-        this.calories = (sporttype.getMet()* user.getWeight()* duration)/60;
-        this.distance=distance;
+        this.calories = (sporttype.getMet() * user.getWeight() * duration) / 60;
+        this.distance = distance;
     }
 
     //<editor-fold defaultstate="collapsed" desc="Getter and Setter">
-    
     public int getDistance() {
         return distance;
     }
-    
+
     public void setDistance(int distance) {
         this.distance = distance;
     }
-    
+
     public long getId() {
         return id;
     }
-    
+
     public void setId(long id) {
         this.id = id;
     }
-    
+
     public int getCalories() {
         return calories;
     }
-    
+
     public void setCalories() {
-        this.calories = (sporttype.getMet()* user.getWeight()* duration)/60;
+        this.calories = (sporttype.getMet() * user.getWeight() * duration) / 60;
     }
-    
+
     public Date getDate() {
         return date;
     }
-    
+
     public void setDate(Date date) {
         this.date = date;
     }
-    
+
     public int getDuration() {
         return duration;
     }
-    
+
     public void setDuration(int duration) {
         this.duration = duration;
     }
-    
+
     public int getRating() {
         return rating;
     }
-    
+
     public void setRating(int rating) {
         this.rating = rating;
     }
-    
+
     public Sporttype getSporttype() {
         return sporttype;
     }
-    
+
     public void setSporttype(Sporttype sporttype) {
         this.sporttype = sporttype;
     }
-    
+
 //</editor-fold>
 }

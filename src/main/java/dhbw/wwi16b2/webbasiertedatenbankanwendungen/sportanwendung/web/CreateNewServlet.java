@@ -65,12 +65,10 @@ public class CreateNewServlet extends HttpServlet {
         String date = request.getParameter("activity_date");
         String time = request.getParameter("activity_time");
         String distance = request.getParameter("activity_distance");
-        String rating  = request.getParameter("star");
+        String rating = request.getParameter("star");
 
         System.out.println(rating);
-      
-        
-        
+
         System.out.println(date);
         System.out.println(time);
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -92,7 +90,7 @@ public class CreateNewServlet extends HttpServlet {
         if (!duration.equals("")) {
             duration2 = Integer.parseInt(duration);
         }
-        
+
         if (!distance.equals("")) {
             distance2 = Integer.parseInt(duration);
         }
@@ -106,15 +104,15 @@ public class CreateNewServlet extends HttpServlet {
 
         if (!date.equals("") && !time.equals("")) {
             try {
-                date2 = dateFormat2.parse(date+" "+time);
+                date2 = dateFormat2.parse(date + " " + time);
             } catch (Exception e) {
             }
         }
-            System.out.println(rating);
-            rating2 = Integer.parseInt(rating);
-            activity = new Activity(new Sporttype(sporttype), date2, duration2, rating2, distance2, this.userbean.getCurrentUser());
-            errors = this.validationBean.validate(activity);
-        
+        System.out.println(rating);
+        rating2 = Integer.parseInt(rating);
+        activity = new Activity(new Sporttype(sporttype), date2, duration2, rating2, distance2, this.userbean.getCurrentUser());
+        errors = this.validationBean.validate(activity);
+
         if (errors.isEmpty()) {
             this.activitybean.saveNew(activity);
             response.sendRedirect(WebUtils.appUrl(request, "/app/home/"));

@@ -61,16 +61,15 @@ public class UserEditServlet extends HttpServlet {
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-        String loeschen = request.getParameter("löschen");
-        
-     //   if(loeschen.equals("true")){
-     //       User user= this.userbean.getCurrentUser();
-     //       response.sendRedirect();
-     //       
-     //       this.userbean.delete(user);
-     //   }
 
+        String loeschen = request.getParameter("löschen");
+
+        //   if(loeschen.equals("true")){
+        //       User user= this.userbean.getCurrentUser();
+        //       response.sendRedirect();
+        //       
+        //       this.userbean.delete(user);
+        //   }
         request.setCharacterEncoding("utf-8");
 
         String username = request.getParameter("user_username");
@@ -98,10 +97,9 @@ public class UserEditServlet extends HttpServlet {
             } catch (ParseException ex) {
                 errors.add("Gültiges Geburtsdatum angeben");
             }
-        }else{
+        } else {
             errors.add("Geburtsdatum angeben");
         }
-        
 
         user.setFirstname(firstname);
         user.setLastname(lastname);
@@ -118,10 +116,10 @@ public class UserEditServlet extends HttpServlet {
             if (!user.checkPassword(oldpassword)) {
                 errors.add("Das alte Passwort ist falsch");
             }
-            if (password1.length()<6){
+            if (password1.length() < 6) {
                 errors.add("Das neue Passwort muss mindestens 6-stellig sein");
             }
-            
+
             if (errors.isEmpty()) {
                 user.setPassword(password1);
             }
